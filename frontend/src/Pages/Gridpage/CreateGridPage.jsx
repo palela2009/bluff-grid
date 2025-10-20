@@ -52,6 +52,7 @@ const CreateGridPage = () => {
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               setSubmitError(null)
               console.log('Submitting grid with values:', values)
+              console.log('API URL:', import.meta.env.VITE_API_URL)
               try {
                 const response = await axiosInstance.post("/save-grid", values)
                 console.log('Grid saved successfully:', response.data)
@@ -60,8 +61,10 @@ const CreateGridPage = () => {
               } catch (err) {
                 console.error('Error saving grid:', err)
                 console.error('Error response:', err.response?.data)
+                console.error('Error status:', err.response?.status)
+                console.error('Error message:', err.message)
                 setSubmitError(
-                  err?.response?.data?.message || "Could not save grid"
+                  err?.response?.data?.message || err.message || "Could not save grid"
                 )
               } finally {
                 setSubmitting(false)
