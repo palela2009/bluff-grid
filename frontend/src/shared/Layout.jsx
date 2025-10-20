@@ -17,15 +17,20 @@ export default function Layout() {
 
   // Handle redirect result on page load (for mobile)
   useEffect(() => {
-    getRedirectResult(auth)
-      .then((result) => {
+    const handleRedirect = async () => {
+      try {
+        const result = await getRedirectResult(auth)
         if (result && result.user) {
-          axiosInstance.post("/users").catch(err => console.error("User creation failed", err))
+          console.log("Mobile redirect successful, user:", result.user)
+          // AuthContext will handle setting the user via onAuthStateChanged
+          await axiosInstance.post("/users").catch(err => console.error("User creation failed", err))
         }
-      })
-      .catch((err) => {
-        console.error("Redirect result error", err)
-      })
+      } catch (err) {
+        console.error("Redirect result error:", err)
+      }
+    }
+    
+    handleRedirect()
   }, [])
 
   const handleGoogleLogin = async () => {
