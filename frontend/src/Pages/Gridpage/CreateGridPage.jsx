@@ -53,6 +53,7 @@ const CreateGridPage = () => {
               setSubmitError(null)
               console.log('Submitting grid with values:', values)
               console.log('API URL:', import.meta.env.VITE_API_URL)
+              console.log('Full axios base URL:', axiosInstance.defaults.baseURL)
               try {
                 const response = await axiosInstance.post("/save-grid", values)
                 console.log('Grid saved successfully:', response.data)
@@ -63,9 +64,21 @@ const CreateGridPage = () => {
                 console.error('Error response:', err.response?.data)
                 console.error('Error status:', err.response?.status)
                 console.error('Error message:', err.message)
-                setSubmitError(
-                  err?.response?.data?.message || err.message || "Could not save grid"
-                )
+                console.error('Error code:', err.code)
+                console.error('Error config:', err.config)
+                
+                let errorMsg = "Could not save grid"
+                if (err.code === 'ERR_NETWORK') {
+                  errorMsg = "Network error - can't reach server. Check your internet connection."
+                } else if (err.response?.status === 401) {
+                  errorMsg = "Not authorized - please log in again"
+                } else if (err.response?.data?.message) {
+                  errorMsg = err.response.data.message
+                } else if (err.message) {
+                  errorMsg = err.message
+                }
+                
+                setSubmitError(errorMsg)
               } finally {
                 setSubmitting(false)
               }

@@ -628,6 +628,15 @@ app.delete('/api/grids/:id', verifyAuth, async (req, res) => {
   }
 });
 
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    message: 'Server is running',
+    timestamp: new Date().toISOString()
+  });
+});
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
