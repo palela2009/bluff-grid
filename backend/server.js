@@ -24,7 +24,9 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   "https://bluffgrid.com",
-  "https://www.bluffgrid.com"
+  "https://www.bluffgrid.com",
+  "https://bluff-grid.netlify.app", // Add your actual Netlify URL here
+  /\.netlify\.app$/ // Allow all Netlify preview deploys
 ];
 
 const io = new Server(httpServer, {
