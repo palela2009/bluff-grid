@@ -1,0 +1,428 @@
+/* Create Grid Page - Modern Purple Gradient Theme */
+
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.create-grid-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.create-grid-header {
+  margin-bottom: 30px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #667eea;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.back-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: white;
+}
+
+.back-link:active {
+  transform: translateY(0);
+}
+
+.create-grid-content {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.create-grid-title-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.create-grid-title-section h1 {
+  font-size: 36px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 15px 0;
+  letter-spacing: -0.5px;
+}
+
+.create-grid-title-section .subtitle {
+  font-size: 16px;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Grid Title Section */
+.grid-title-section {
+  margin-bottom: 40px;
+}
+
+.form-label {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 10px;
+  letter-spacing: -0.2px;
+}
+
+.grid-title-input {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: #f8fafc;
+  color: #1e293b;
+  box-sizing: border-box;
+}
+
+.grid-title-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.grid-title-input::placeholder {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Statements Section */
+.statements-section {
+  margin-bottom: 40px;
+}
+
+.statements-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.3px;
+}
+
+.statements-subtitle {
+  font-size: 15px;
+  color: #64748b;
+  margin: 0 0 25px 0;
+  line-height: 1.6;
+}
+
+.statements-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.statement-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.statement-input {
+  flex: 1;
+  padding: 16px 18px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: #f8fafc;
+  color: #1e293b;
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.6;
+}
+
+.statement-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.statement-input::placeholder {
+  color: #94a3b8;
+}
+
+.mark-truth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  background: white;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  height: fit-content;
+  margin-top: 16px;
+}
+
+.mark-truth-btn:hover {
+  border-color: #10b981;
+  color: #10b981;
+  background: #f0fdf4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.mark-truth-btn.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  border-color: #10b981;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.mark-truth-btn.active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.mark-truth-btn svg {
+  width: 14px;
+  height: 14px;
+  color: inherit !important;
+  stroke: currentColor !important;
+}
+
+/* Error Messages */
+.error-message {
+  color: #ef4444;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;
+  padding: 10px 14px;
+  background: #fef2f2;
+  border-left: 4px solid #ef4444;
+  border-radius: 8px;
+}
+
+/* Action Buttons */
+.create-grid-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid #f1f5f9;
+}
+
+.btn {
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  min-width: 140px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-outline {
+  background: white;
+  color: #64748b;
+  border: 2px solid #e2e8f0;
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .create-grid-main {
+    padding: 20px 15px;
+  }
+
+  .create-grid-content {
+    padding: 30px 20px;
+    border-radius: 16px;
+  }
+
+  .create-grid-title-section h1 {
+    font-size: 28px;
+  }
+
+  .create-grid-title-section .subtitle {
+    font-size: 14px;
+  }
+
+  .statements-title {
+    font-size: 20px;
+  }
+
+  .statements-subtitle {
+    font-size: 14px;
+  }
+
+  .statement-item {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mark-truth-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0;
+    padding: 12px 16px;
+  }
+
+  .create-grid-actions {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .create-grid-main {
+    padding: 15px 10px;
+  }
+
+  .create-grid-content {
+    padding: 25px 15px;
+    border-radius: 12px;
+  }
+
+  .create-grid-title-section {
+    margin-bottom: 30px;
+  }
+
+  .create-grid-title-section h1 {
+    font-size: 24px;
+  }
+
+  .create-grid-title-section .subtitle {
+    font-size: 13px;
+  }
+
+  .back-link {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+
+  .grid-title-input {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+
+  .statement-input {
+    padding: 14px 16px;
+    font-size: 14px;
+    min-height: 70px;
+  }
+
+  .statements-title {
+    font-size: 18px;
+  }
+
+  .statements-subtitle {
+    font-size: 13px;
+  }
+
+  .mark-truth-btn {
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .back-link,
+  .mark-truth-btn,
+  .btn {
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
+  }
+
+  .back-link:active {
+    transform: scale(0.98);
+  }
+
+  .mark-truth-btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  .statement-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .grid-title-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}

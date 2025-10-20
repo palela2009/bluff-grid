@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+* {
+  box-sizing: border-box;
+}
+:root {
+  --border-radius: 5px;
+  --card-spacing: 16px;
+
+  --purple-900: hsl(271, 81%, 46%);
+  --purple-700: hsl(271, 81%, 56%);
+  --purple-300: hsl(271, 81%, 86%);
+
+  --red-900: hsl(0, 84%, 40%);
+  --red-700: hsl(0, 84%, 60%);
+
+  --green-900: hsl(142, 76%, 26%);
+  --green-700: hsl(142, 76%, 36%);
+
+  --gray-700: hsl(0, 0%, 20%);
+  --gray-500: hsl(0, 0%, 50%);
+  --gray-300: hsl(0, 0%, 85%);
+  --gray-100: hsl(210, 40%, 96%);
+  --gray-50: hsl(0, 0%, 97%);
+
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
+}
+a {
+  display: inline-block;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+body {
+  font-family: "Geist", sans-serif;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--card-spacing);
+}
+
+.card {
+  background-color: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--border-radius);
+  padding: var(--card-spacing);
+}
+.btn {
+  font: inherit;
+  padding: 8px 20px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--purple-700);
+  color: var(--white);
+}
+
+.btn-outline {
+  background-color: var(--white);
+  color: var(--black);
+  border: 1px solid var(--gray-300);
+}
+
+.btn-secondary {
+  background-color: var(--gray-100);
+  color: var(--black);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--border-radius);
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: var(--white);
+  display: inline-block;
+}
+
+.badge-danger {
+  background-color: var(--red-700);
+}
+
+.badge-success {
+  background-color: var(--green-700);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 12px;
+  }
+
+  .card {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 15px;
+    min-height: 44px;
+  }
+
+  input[type="text"],
+  textarea {
+    padding: 12px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .badge {
+    padding: 5px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 10px;
+  }
+
+  .btn {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  input[type="text"],
+  textarea {
+    padding: 10px;
+  }
+
+  .badge {
+    padding: 4px 10px;
+    font-size: 13px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .btn {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  /* Ensure all interactive elements are at least 44x44px */
+  button,
+  a.btn,
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+
