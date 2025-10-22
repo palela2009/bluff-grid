@@ -2,11 +2,13 @@ import { useNavigate } from "react-router"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { ArrowLeft, Check } from "lucide-react"
 import axiosInstance from "../../lib/axiosInstance"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { AuthContext } from "../../lib/AuthContext"
 import "./CreateGridPage.css"
 
 const CreateGridPage = () => {
   const navigate = useNavigate()
+  const { user } = useContext(AuthContext)
   const [submitError, setSubmitError] = useState(null)
 
   const validate = values => {
@@ -51,12 +53,13 @@ const CreateGridPage = () => {
             validate={validate}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               setSubmitError(null)
+              console.log('👤 Current user:', user?.uid, user?.email)
               console.log('Submitting grid with values:', values)
               console.log('API URL:', import.meta.env.VITE_API_URL)
               console.log('Full axios base URL:', axiosInstance.defaults.baseURL)
               try {
                 const response = await axiosInstance.post("/save-grid", values)
-                console.log('Grid saved successfully:', response.data)
+                console.log('✅ Grid saved successfully:', response.data)
                 resetForm()
                 navigate("/profile")
               } catch (err) {

@@ -17,13 +17,16 @@ const ProfilePage = () => {
 
   const fetchUserGrids = async () => {
     if (!user?.uid) {
+      console.log('❌ No user UID, skipping grid fetch')
       setLoading(false)
       return
     }
 
+    console.log('👤 Fetching grids for user:', user.uid, user.email)
     try {
       setLoading(true)
       const response = await axiosInstance.get(`/grids`)
+      console.log('✅ Grids fetched:', response.data)
       setGrids(response.data || [])
     } catch (error) {
       console.error("Error fetching grids:", error)
