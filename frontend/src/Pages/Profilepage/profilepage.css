@@ -1,4 +1,4 @@
-nio:root {
+:root {
     --purple-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --pink-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --blue-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
