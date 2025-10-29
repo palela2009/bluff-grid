@@ -7,11 +7,13 @@ Railway can host BOTH frontend and backend in one place - much simpler than Netl
 ## 📋 Prerequisites
 
 1. **MongoDB Atlas account** (free)
+
    - Sign up at https://www.mongodb.com/cloud/atlas
    - Create a cluster
    - Get your connection string
 
 2. **GitHub repository** (you have this ✅)
+
    - Your code is already on GitHub
 
 3. **Railway account** (free)
@@ -61,16 +63,16 @@ Railway can host BOTH frontend and backend in one place - much simpler than Netl
 12. Click **"New Variable"**
 13. Add these three variables:
 
-   ```
-   MONGO_URI
-   Value: mongodb+srv://your-connection-string-from-step-1
-   
-   PORT
-   Value: 3000
-   
-   NODE_ENV
-   Value: production
-   ```
+```
+MONGO_URI
+Value: mongodb+srv://your-connection-string-from-step-1
+
+PORT
+Value: 3000
+
+NODE_ENV
+Value: production
+```
 
 14. Click **"Deploy"** (Railway auto-deploys)
 15. Wait 2-3 minutes for deployment
@@ -101,6 +103,7 @@ Now add the frontend to the SAME project:
 
 9. Click **"Variables"** tab
 10. Add this variable:
+
     ```
     VITE_API_URL
     Value: https://your-backend-url-from-step-2.railway.app
@@ -127,11 +130,12 @@ Your frontend URL needs to be allowed in backend:
 4. Railway auto-redeploys
 
 Or manually update `server.js` and push to GitHub:
+
 ```javascript
 const allowedOrigins = [
   "http://localhost:5173",
   "https://your-frontend-url.railway.app", // Add your Railway frontend URL
-  /\.railway\.app$/ // Allow all Railway domains
+  /\.railway\.app$/, // Allow all Railway domains
 ];
 ```
 
@@ -161,6 +165,7 @@ If you have **bluffgrid.com**:
 4. Railway shows you DNS records
 
 In your domain registrar:
+
 ```
 Type: CNAME
 Name: @
@@ -199,16 +204,19 @@ Railway automatically rebuilds and deploys both services! 🚀
 ## 🐛 Troubleshooting
 
 ### Backend won't start:
+
 - Check Railway logs: Backend service → "Deployments" → Click on deployment → "View Logs"
 - Verify MONGO_URI is correct
 - Check MongoDB Atlas IP whitelist (0.0.0.0/0)
 
 ### Frontend can't connect to backend:
+
 - Verify VITE_API_URL is set correctly
 - Check backend CORS allows your frontend URL
 - Check browser console for errors
 
 ### "Cannot connect to MongoDB":
+
 - MongoDB Atlas → Network Access → Add IP: 0.0.0.0/0
 - Check MONGO_URI format
 - Make sure password doesn't have special characters (or URL encode them)
@@ -218,6 +226,7 @@ Railway automatically rebuilds and deploys both services! 🚀
 ## 📊 Railway Dashboard
 
 **Monitor your app:**
+
 - **Deployments**: See build logs
 - **Metrics**: CPU/Memory usage
 - **Logs**: Real-time application logs

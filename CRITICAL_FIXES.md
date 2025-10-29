@@ -3,11 +3,13 @@
 ## Issues Being Fixed
 
 ### Issue 1: Vote Counts Not Showing
+
 **Problem:** Vote counts show "0 votes" for all answers even when people clicked
 **Expected:** Should show how many people voted for each answer
 **Points:** Correct answer = +1 point, Wrong answer = 0 points
 
-### Issue 2: "Next Player Grid" Button Not Working  
+### Issue 2: "Next Player Grid" Button Not Working
+
 **Problem:** When clicking "Next Player Grid", terminal shows "room not found [room code]"
 **Expected:** Should advance to next player's grid
 
@@ -18,11 +20,13 @@
 ### Frontend Changes (game.jsx)
 
 1. **Added roomCode extraction from URL with fallback:**
+
 ```javascript
-const roomCode = params.get("code") || location.state?.roomData?.code
+const roomCode = params.get("code") || location.state?.roomData?.code;
 ```
 
 2. **Added validation to ensure roomCode exists:**
+
 ```javascript
 if (!roomCode) {
   console.error("No room code found in URL or state!");
@@ -32,19 +36,21 @@ if (!roomCode) {
 ```
 
 3. **Fixed socket emissions to use roomCode:**
+
 ```javascript
 socket.emit("submit-answer", {
-  code: roomCode,  // Was: roomData?.code
-  answerIndex: originalStatementIndex
-})
+  code: roomCode, // Was: roomData?.code
+  answerIndex: originalStatementIndex,
+});
 
 socket.emit("next-player-grid", {
-  code: roomCode,  // Was: roomData?.code
-  selectedGridOwner: nextOwnerFirebaseId
-})
+  code: roomCode, // Was: roomData?.code
+  selectedGridOwner: nextOwnerFirebaseId,
+});
 ```
 
 4. **Added extensive logging:**
+
 - Logs room code on component load
 - Logs when answers are submitted
 - Logs when "Next Player Grid" is clicked
@@ -53,21 +59,29 @@ socket.emit("next-player-grid", {
 ### Frontend Changes (questionCard.jsx)
 
 1. **Added logging to track vote counts:**
+
 ```javascript
-console.log("QuestionCard render - showAnswer:", showAnswer, "voteCounts:", voteCounts);
+console.log(
+  "QuestionCard render - showAnswer:",
+  showAnswer,
+  "voteCounts:",
+  voteCounts
+);
 console.log(`Option ${index}: "${option}" - ${votes} vote(s)`);
 ```
 
 ### Backend Changes (server.js)
 
 1. **Fixed answer tracking using roundIndex instead of currentQuestionIndex:**
+
 ```javascript
 const roundIdx = room.roundIndex || 0;
-player.answers[roundIdx] = answerIndex;  // Was: player.answers[room.currentQuestionIndex]
+player.answers[roundIdx] = answerIndex; // Was: player.answers[room.currentQuestionIndex]
 player.scores[roundIdx] = score;
 ```
 
 2. **Enhanced next-player-grid logging:**
+
 ```javascript
 console.log("=== NEXT PLAYER GRID REQUEST ===");
 console.log("Room code received:", code);
@@ -75,6 +89,7 @@ console.log("Available rooms:", Object.keys(rooms));
 ```
 
 3. **Better error messages:**
+
 ```javascript
 socket.emit("error", { message: `Room not found: ${code}` });
 ```
@@ -84,6 +99,7 @@ socket.emit("error", { message: `Room not found: ${code}` });
 ## How to Test
 
 ### Test 1: Vote Counts
+
 1. Start a game with 2 players
 2. Both players answer the question
 3. After all answers are submitted, check:
@@ -93,6 +109,7 @@ socket.emit("error", { message: `Room not found: ${code}` });
    - ✅ QuestionCard logs show correct vote numbers
 
 **Expected Console Output:**
+
 ```
 Player Player1 answered correctly/incorrectly in round 1 (selected 2, correct is 3): 0 point(s)
 Vote counts after Player1's answer: [0, 0, 1, 0, 0]
@@ -104,6 +121,7 @@ Round complete received with vote counts: [0, 0, 1, 1, 0]
 ```
 
 ### Test 2: Next Player Grid Button
+
 1. Start a game with 2 players (both must have created grids)
 2. Play Round 1, all players answer
 3. Host clicks "Next Player Grid"
@@ -115,6 +133,7 @@ Round complete received with vote counts: [0, 0, 1, 1, 0]
    - ✅ NOT: "❌ Room not found!"
 
 **Expected Backend Output:**
+
 ```
 === NEXT PLAYER GRID REQUEST ===
 Room code received: ABC123
@@ -130,6 +149,7 @@ Round 2/2 started with grid: My Grid
 ```
 
 ### Test 3: Points Calculation
+
 1. Play through 2 rounds with 2 players
 2. Get some answers correct, some wrong
 3. Check backend console for score logs
@@ -141,6 +161,7 @@ Round 2/2 started with grid: My Grid
    - ✅ Leaderboard shows correct totals
 
 **Expected Backend Output:**
+
 ```
 Player Player1 answered correctly in round 1 (selected 2, correct is 2): 1 point(s)
 Player Player1 answered incorrectly in round 2 (selected 1, correct is 3): 0 point(s)
@@ -154,6 +175,7 @@ Player Player2: 2 points (scores: 1,1)
 ## If Issues Persist
 
 ### If "Room not found" still appears:
+
 1. Check browser console for: "Game component loaded. Room code: XXXXXX"
 2. If it shows "Room code: null" or "Room code: undefined":
    - The URL doesn't have ?code=XXXXXX
@@ -163,6 +185,7 @@ Player Player2: 2 points (scores: 1,1)
    - The room might have been deleted (players disconnected)
 
 ### If vote counts still show 0:
+
 1. Check browser console for "Round complete received with vote counts: [...]"
 2. If array is empty or all zeros:
    - Backend isn't calculating votes correctly
@@ -172,6 +195,7 @@ Player Player2: 2 points (scores: 1,1)
    - Check QuestionCard console logs
 
 ### If points don't calculate:
+
 1. Check backend console after each answer
 2. Should see: "Player X answered correctly/incorrectly in round Y"
 3. Should see the score (0 or 1)
@@ -192,7 +216,7 @@ cd backend
 npm start
 
 # In another terminal, start frontend
-cd frontend  
+cd frontend
 npm run dev
 ```
 
@@ -204,5 +228,4 @@ npm run dev
 ✅ **Points System:** Correct = +1, Wrong = 0, accumulated across rounds  
 ✅ **Next Player Grid:** Uses roomCode from URL, added extensive logging  
 ✅ **Error Handling:** Better error messages when things go wrong  
-✅ **Debugging:** Comprehensive console logs at every step  
-
+✅ **Debugging:** Comprehensive console logs at every step

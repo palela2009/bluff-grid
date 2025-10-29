@@ -3,6 +3,7 @@ import "./Home.css"
 import { useNavigate } from "react-router-dom"
 
 import { useState } from "react"
+import soundManager from "../../lib/sounds"
 
 const generateRoomCode = () => {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -22,6 +23,7 @@ export const Home = () => {
   const [roomCode, setRoomCode] = useState("")
 
   const handleHostGame = () => {
+    soundManager.play("click")
     const code = generateRoomCode()
 
     navigate(`/lobby?code=${code}&host=true`)
@@ -29,15 +31,16 @@ export const Home = () => {
 
   const handleJoinGame = () => {
     if (roomCode.trim() !== "") {
+      soundManager.play("join")
       navigate(`/lobby?code=${roomCode.toUpperCase()}`)
     } else {
+      soundManager.play("incorrect")
       alert("Please enter a room code.")
     }
   }
 
   return (
     <div className="container">
-      
       <div className="top-section">
         <div className="tagline">🎯 The Ultimate Friend Quiz Game</div>
 

@@ -1,6 +1,7 @@
 .container {
   padding: 40px 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
   text-align: center;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
@@ -96,13 +97,14 @@
 }
 
 .top-section .title {
-  font-size: 56px;
+  font-size: 64px;
   color: white;
   margin: 0;
-  font-weight: 800;
-  line-height: 1.2;
-  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+  font-weight: 900;
+  line-height: 1.1;
+  text-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
   animation: fadeInUp 0.8s ease-out;
+  letter-spacing: -1.5px;
 }
 
 @keyframes fadeInUp {
@@ -161,7 +163,7 @@
 }
 
 .step-box::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -231,25 +233,51 @@
   color: white;
   border: none;
   padding: 16px 32px;
-  border-radius: 12px;
+  border-radius: 14px;
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   min-width: 180px;
   height: 56px;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5),
+    0 4px 15px rgba(118, 75, 162, 0.3);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.host-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.host-button:hover::before {
+  left: 100%;
 }
 
 .host-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 45px rgba(102, 126, 234, 0.6),
+    0 8px 25px rgba(118, 75, 162, 0.4);
+  background: linear-gradient(135deg, #7c8ff0 0%, #8a5cb8 100%);
 }
 
 .host-button:active {
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
 }
 
 .host-button svg {
@@ -288,32 +316,53 @@
 
 .join-button {
   background: white;
-  border: 3px solid rgba(255, 255, 255, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.4);
   font-weight: 700;
   cursor: pointer;
   font-size: 16px;
   padding: 16px 32px;
   color: #667eea;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   min-width: 180px;
   height: 56px;
-  border-radius: 12px;
+  border-radius: 14px;
   box-sizing: border-box;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4),
+    0 4px 15px rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.join-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.join-button:hover::before {
+  opacity: 1;
 }
 
 .join-button:hover {
-  background: #667eea;
   color: white;
-  border-color: #667eea;
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+  border-color: transparent;
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 45px rgba(102, 126, 234, 0.5),
+    0 8px 25px rgba(118, 75, 162, 0.3);
 }
 
 .join-button:active {
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
 }
 
 /* Mobile Responsiveness */

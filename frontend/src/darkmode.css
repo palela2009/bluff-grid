@@ -1,0 +1,355 @@
+/* Global Dark Mode Styles */
+
+/* Dark mode for Home page - FULL DARK */
+:root.dark-mode .container {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+:root.dark-mode .header {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+  border-bottom-color: rgba(102, 126, 234, 0.3);
+}
+
+:root.dark-mode .step-box {
+  background: #1e293b !important;
+  border-color: #334155;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+:root.dark-mode .step-box:hover {
+  background: #334155 !important;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
+}
+
+:root.dark-mode .step-title {
+  color: #f1f5f9 !important;
+}
+
+:root.dark-mode .step-text {
+  color: #cbd5e1 !important;
+}
+
+:root.dark-mode .room-input {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border-color: rgba(102, 126, 234, 0.4) !important;
+  color: #f1f5f9 !important;
+}
+
+:root.dark-mode .room-input::placeholder {
+  color: #64748b !important;
+}
+
+/* Dark mode for About page */
+:root.dark-mode .about-container {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+:root.dark-mode .about-hero {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+}
+
+:root.dark-mode .about-content {
+  background: #1e293b !important;
+  color: #f1f5f9;
+}
+
+:root.dark-mode .step-card,
+:root.dark-mode .feature-card {
+  background: #1e293b !important;
+  border-color: #334155;
+  color: #f1f5f9;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+:root.dark-mode .step-card:hover,
+:root.dark-mode .feature-card:hover {
+  background: #334155 !important;
+  border-color: #667eea;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
+}
+
+:root.dark-mode .step-card h3,
+:root.dark-mode .feature-card h3 {
+  color: #f1f5f9;
+}
+
+:root.dark-mode .step-card p,
+:root.dark-mode .feature-card p {
+  color: #cbd5e1;
+}
+
+/* Dark mode for Profile page */
+:root.dark-mode .profile-container {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+:root.dark-mode .profile-hero {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+}
+
+:root.dark-mode .grids-section {
+  background: #1e293b !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+:root.dark-mode .section-header h2 {
+  color: #f1f5f9;
+}
+
+:root.dark-mode .section-header p {
+  color: #94a3b8;
+}
+
+:root.dark-mode .grid-card {
+  background: #1e293b !important;
+  border-color: #334155;
+  color: #f1f5f9;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+:root.dark-mode .grid-card:hover {
+  background: #334155 !important;
+  border-color: #667eea;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+}
+
+:root.dark-mode .grid-card-header h3 {
+  color: #f1f5f9;
+}
+
+:root.dark-mode .grid-details-item {
+  background: #1e293b;
+  color: #cbd5e1;
+}
+
+:root.dark-mode .no-grids {
+  background: #334155;
+  border-color: #475569;
+  color: #cbd5e1;
+}
+
+/* Dark mode for Create Grid page */
+:root.dark-mode .create-grid-container {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+:root.dark-mode .create-grid-card {
+  background: #1e293b !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+:root.dark-mode .create-grid-card h1 {
+  color: #f1f5f9;
+}
+
+:root.dark-mode .input-group label {
+  color: #cbd5e1;
+}
+
+:root.dark-mode .input-group input,
+:root.dark-mode .input-group textarea {
+  background: #0f172a !important;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+:root.dark-mode .input-group input:focus,
+:root.dark-mode .input-group textarea:focus {
+  background: #1e293b !important;
+  border-color: #667eea;
+}
+
+:root.dark-mode .input-group input::placeholder,
+:root.dark-mode .input-group textarea::placeholder {
+  color: #64748b;
+}
+
+:root.dark-mode .grid-item {
+  background: #1e293b !important;
+  border-color: #334155;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+:root.dark-mode .grid-item:hover {
+  background: #334155 !important;
+  border-color: #667eea;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+}
+
+:root.dark-mode .grid-item h3 {
+  color: #f1f5f9;
+}
+
+:root.dark-mode .grid-item input {
+  background: #0f172a !important;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+:root.dark-mode .remove-grid-btn {
+  background: #ef4444;
+}
+
+/* Dark mode for Leaderboard */
+:root.dark-mode body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+:root.dark-mode .player-card {
+  background: #1e293b !important;
+  border-color: #334155;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+:root.dark-mode .player-card:hover {
+  background: #334155 !important;
+  border-color: #667eea;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.9);
+}
+
+:root.dark-mode .name {
+  color: #f1f5f9;
+}
+
+:root.dark-mode .score {
+  color: #94a3b8;
+}
+
+:root.dark-mode .leaderboard-table {
+  background: #1e293b !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+:root.dark-mode .leaderboard-table th {
+  background: #0f172a !important;
+  color: #f1f5f9;
+  border-color: #334155;
+}
+
+:root.dark-mode .leaderboard-table td {
+  background: #1e293b !important;
+  border-color: #0f172a;
+  color: #cbd5e1;
+}
+
+:root.dark-mode .leaderboard-table tr:hover td {
+  background: #334155 !important;
+}
+
+/* Dark mode for Lobby page */
+:root.dark-mode .card {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+:root.dark-mode .lobby-details {
+  background: #1e293b !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+:root.dark-mode .lobby-details h2 {
+  color: #f1f5f9;
+}
+
+:root.dark-mode .lobby-details > p {
+  color: #94a3b8;
+}
+
+:root.dark-mode .game-options {
+  background: #1e293b !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+:root.dark-mode .game-options h3 {
+  color: #f1f5f9;
+}
+
+:root.dark-mode .game-options > p {
+  color: #94a3b8;
+}
+
+:root.dark-mode .select-grid-container label {
+  color: #cbd5e1;
+}
+
+:root.dark-mode .select-grid-container select {
+  background: #0f172a !important;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+:root.dark-mode .player-item {
+  background: #1e293b !important;
+  border-color: #334155;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+:root.dark-mode .player-item:hover {
+  background: linear-gradient(135deg, #334155 0%, #1e293b 100%) !important;
+  border-color: #667eea;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+}
+
+:root.dark-mode .player-name {
+  color: #f1f5f9;
+}
+
+/* Dark mode for Game page */
+:root.dark-mode body {
+  background: #0f172a !important;
+}
+
+:root.dark-mode .game-header {
+  background: #1e293b !important;
+  border-color: #334155;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+:root.dark-mode .players-label {
+  color: #cbd5e1;
+}
+
+:root.dark-mode .btn {
+  background: #1e293b !important;
+  border-color: #334155;
+  color: #f1f5f9;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+:root.dark-mode .btn:hover:not(:disabled) {
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.2) 0%,
+    rgba(118, 75, 162, 0.2) 100%
+  ) !important;
+  border-color: #667eea;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+:root.dark-mode .game-over-screen {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+:root.dark-mode .game-over-content {
+  background: #1e293b !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+}
+
+:root.dark-mode .game-over-content h1 {
+  color: #f1f5f9;
+}
+
+:root.dark-mode .game-over-content p {
+  color: #cbd5e1;
+}
+
+/* Dark mode for Footer */
+:root.dark-mode .app-footer {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  border-top-color: #fbbf24;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+}
+
+:root.dark-mode .footer-text,
+:root.dark-mode .footer-creator {
+  color: #cbd5e1;
+}

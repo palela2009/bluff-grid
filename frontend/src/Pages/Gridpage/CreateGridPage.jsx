@@ -23,7 +23,6 @@ const CreateGridPage = () => {
 
   return (
     <div className="container">
-
       <main className="create-grid-main">
         <div className="create-grid-header">
           <button
@@ -53,26 +52,30 @@ const CreateGridPage = () => {
             validate={validate}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               setSubmitError(null)
-              console.log('👤 Current user:', user?.uid, user?.email)
-              console.log('Submitting grid with values:', values)
-              console.log('API URL:', import.meta.env.VITE_API_URL)
-              console.log('Full axios base URL:', axiosInstance.defaults.baseURL)
+              console.log("👤 Current user:", user?.uid, user?.email)
+              console.log("Submitting grid with values:", values)
+              console.log("API URL:", import.meta.env.VITE_API_URL)
+              console.log(
+                "Full axios base URL:",
+                axiosInstance.defaults.baseURL
+              )
               try {
                 const response = await axiosInstance.post("/save-grid", values)
-                console.log('✅ Grid saved successfully:', response.data)
+                console.log("✅ Grid saved successfully:", response.data)
                 resetForm()
                 navigate("/profile")
               } catch (err) {
-                console.error('Error saving grid:', err)
-                console.error('Error response:', err.response?.data)
-                console.error('Error status:', err.response?.status)
-                console.error('Error message:', err.message)
-                console.error('Error code:', err.code)
-                console.error('Error config:', err.config)
-                
+                console.error("Error saving grid:", err)
+                console.error("Error response:", err.response?.data)
+                console.error("Error status:", err.response?.status)
+                console.error("Error message:", err.message)
+                console.error("Error code:", err.code)
+                console.error("Error config:", err.config)
+
                 let errorMsg = "Could not save grid"
-                if (err.code === 'ERR_NETWORK') {
-                  errorMsg = "Network error - can't reach server. Check your internet connection."
+                if (err.code === "ERR_NETWORK") {
+                  errorMsg =
+                    "Network error - can't reach server. Check your internet connection."
                 } else if (err.response?.status === 401) {
                   errorMsg = "Not authorized - please log in again"
                 } else if (err.response?.data?.message) {
@@ -80,7 +83,7 @@ const CreateGridPage = () => {
                 } else if (err.message) {
                   errorMsg = err.message
                 }
-                
+
                 setSubmitError(errorMsg)
               } finally {
                 setSubmitting(false)

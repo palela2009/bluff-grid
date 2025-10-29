@@ -4,6 +4,7 @@ import { Home } from "./Pages/home/Home.jsx"
 import ProfilePage from "./Pages/Profilepage/ProfilePage.jsx"
 import CreateGridPage from ".//Pages/Gridpage/CreateGridPage.jsx"
 import "./App.css"
+import "./darkmode.css"
 import { Game } from "./Pages/game/game"
 import Layout from "./shared/Layout.jsx"
 import Lobby from "./Pages/lobby_page/LobbyPage.jsx"
@@ -44,4 +45,3 @@ function App() {
 }
 
 export default App
-

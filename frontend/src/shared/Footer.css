@@ -1,9 +1,10 @@
 .app-footer {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 20px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #581c87 100%);
+  padding: 24px 20px;
   text-align: center;
   margin-top: auto;
-  box-shadow: 0 -4px 20px rgba(102, 126, 234, 0.3);
+  border-top: 3px solid #fbbf24;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .footer-content {
@@ -13,45 +14,29 @@
 
 .footer-text {
   margin: 0 0 8px 0;
-  font-size: 18px;
-  color: #ffffff !important;
-  font-weight: 700;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-}
-
-.creator-name {
-  font-weight: 900 !important;
-  color: #fbbf24 !important;
-  font-size: 24px !important;
-  letter-spacing: 0.5px;
-  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.8) !important;
-  background: none !important;
-  -webkit-text-fill-color: #fbbf24 !important;
-}
-
-.footer-subtext {
-  margin: 0;
   font-size: 15px;
-  color: #ffffff !important;
-  font-weight: 600;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.footer-creator {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .app-footer {
-    padding: 16px;
+    padding: 20px 16px;
   }
 
   .footer-text {
     font-size: 14px;
   }
 
-  .creator-name {
-    font-size: 16px;
-  }
-
-  .footer-subtext {
+  .footer-creator {
     font-size: 12px;
   }
 }

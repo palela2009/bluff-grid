@@ -17,16 +17,16 @@ const ProfilePage = () => {
 
   const fetchUserGrids = async () => {
     if (!user?.uid) {
-      console.log('❌ No user UID, skipping grid fetch')
+      console.log("❌ No user UID, skipping grid fetch")
       setLoading(false)
       return
     }
 
-    console.log('👤 Fetching grids for user:', user.uid, user.email)
+    console.log("👤 Fetching grids for user:", user.uid, user.email)
     try {
       setLoading(true)
       const response = await axiosInstance.get(`/grids`)
-      console.log('✅ Grids fetched:', response.data)
+      console.log("✅ Grids fetched:", response.data)
       setGrids(response.data || [])
     } catch (error) {
       console.error("Error fetching grids:", error)
@@ -36,7 +36,7 @@ const ProfilePage = () => {
     }
   }
 
-  const handleDeleteGrid = async (gridId) => {
+  const handleDeleteGrid = async gridId => {
     if (!window.confirm("Are you sure you want to delete this grid?")) {
       return
     }
@@ -51,13 +51,13 @@ const ProfilePage = () => {
     }
   }
 
-  const formatDate = (dateString) => {
+  const formatDate = dateString => {
     if (!dateString) return "Recently"
     const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', { 
-      month: 'short', 
-      day: 'numeric', 
-      year: 'numeric' 
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric"
     })
   }
 
@@ -125,7 +125,7 @@ const ProfilePage = () => {
             </div>
           ) : grids.length > 0 ? (
             <div className="grids-grid">
-              {grids.map((grid) => (
+              {grids.map(grid => (
                 <div key={grid._id} className="grid-card">
                   <div className="grid-card-header">
                     <h3>{grid.title}</h3>
@@ -137,7 +137,7 @@ const ProfilePage = () => {
                       <Trash2 size={18} />
                     </button>
                   </div>
-                  
+
                   <div className="grid-card-body">
                     <div className="statements-preview">
                       {grid.statements?.slice(0, 3).map((statement, idx) => (

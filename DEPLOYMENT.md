@@ -1,6 +1,7 @@
 # 🚀 Bluff Grid Deployment Guide
 
 ## Prerequisites
+
 - ✅ Domain: **bluffgrid.com** (purchase from Namecheap/GoDaddy)
 - ✅ MongoDB Atlas account (free)
 - ✅ Vercel account (free)
@@ -28,6 +29,7 @@
 5. Railway will auto-detect Node.js
 
 **Environment Variables to Set:**
+
 ```
 MONGO_URI=mongodb+srv://your-connection-string
 PORT=3000
@@ -35,6 +37,7 @@ NODE_ENV=production
 ```
 
 **Important Settings:**
+
 - Root Directory: `/backend`
 - Start Command: `npm start`
 - Port: Railway will provide a URL like `https://bluff-grid-backend.up.railway.app`
@@ -54,6 +57,7 @@ NODE_ENV=production
    - Output Directory: `dist`
 
 **Environment Variables:**
+
 ```
 VITE_API_URL=https://your-railway-backend-url.railway.app
 ```
@@ -99,13 +103,16 @@ baseURL: import.meta.env.VITE_API_URL || "https://your-railway-backend-url.railw
 ### 7. Connect Custom Domain
 
 **In Vercel:**
+
 1. Go to your project → Settings → Domains
 2. Add `bluffgrid.com` and `www.bluffgrid.com`
 3. Vercel will show you DNS records to add
 
 **In your domain registrar (Namecheap/GoDaddy):**
+
 1. Go to DNS settings
 2. Add these records:
+
    ```
    Type: A
    Host: @
@@ -115,6 +122,7 @@ baseURL: import.meta.env.VITE_API_URL || "https://your-railway-backend-url.railw
    Host: www
    Value: cname.vercel-dns.com
    ```
+
 3. Wait 24-48 hours for DNS propagation
 
 ---
@@ -132,11 +140,13 @@ baseURL: import.meta.env.VITE_API_URL || "https://your-railway-backend-url.railw
 ## 📦 Files to Update Before Deployment
 
 ### 1. Create `frontend/.env.production`:
+
 ```
 VITE_API_URL=https://your-railway-backend-url.railway.app
 ```
 
 ### 2. Create `backend/.env`:
+
 ```
 MONGO_URI=mongodb+srv://your-atlas-connection-string
 PORT=3000
@@ -144,6 +154,7 @@ NODE_ENV=production
 ```
 
 ### 3. Add to `.gitignore`:
+
 ```
 .env
 .env.local
@@ -155,6 +166,7 @@ NODE_ENV=production
 ## 🧪 Testing Checklist
 
 After deployment, test:
+
 - [ ] Homepage loads
 - [ ] User can sign up/login
 - [ ] User can create grids
@@ -180,6 +192,7 @@ After deployment, test:
 ## 📈 Scaling Later (When You Get Popular)
 
 If your game gets lots of traffic:
+
 1. Upgrade Railway to paid plan (~$5-20/month)
 2. Upgrade MongoDB Atlas if needed
 3. Add CDN for faster loading
@@ -190,6 +203,7 @@ If your game gets lots of traffic:
 ## 🆘 Need Help?
 
 Common issues:
+
 - **500 errors**: Check Railway logs for backend errors
 - **CORS errors**: Make sure backend allows your frontend domain
 - **Can't connect to MongoDB**: Check connection string and IP whitelist
@@ -200,6 +214,7 @@ Common issues:
 ## ✅ Quick Start Commands
 
 **Before deploying, commit all changes:**
+
 ```bash
 git add .
 git commit -m "Prepare for deployment"
@@ -207,6 +222,7 @@ git push origin main
 ```
 
 **Test production build locally:**
+
 ```bash
 # Frontend
 cd frontend

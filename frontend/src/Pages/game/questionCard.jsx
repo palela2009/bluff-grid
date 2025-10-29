@@ -1,3 +1,5 @@
+import soundManager from "../../lib/sounds"
+
 export function QuestionCard({
   answers,
   correct,
@@ -8,10 +10,16 @@ export function QuestionCard({
 }) {
   const handleClick = (option, index) => {
     if (showAnswer) return
+    soundManager.play("click")
     onAnswer(option, index)
   }
-  
-  console.log("QuestionCard render - showAnswer:", showAnswer, "voteCounts:", voteCounts);
+
+  console.log(
+    "QuestionCard render - showAnswer:",
+    showAnswer,
+    "voteCounts:",
+    voteCounts
+  )
 
   return (
     <div className="card">
@@ -21,7 +29,7 @@ export function QuestionCard({
           className += option === correct ? " correct" : " incorrect"
         }
         const votes = voteCounts?.[index] || 0
-        console.log(`Option ${index}: "${option}" - ${votes} vote(s)`);
+        console.log(`Option ${index}: "${option}" - ${votes} vote(s)`)
         return (
           <div key={index}>
             <button

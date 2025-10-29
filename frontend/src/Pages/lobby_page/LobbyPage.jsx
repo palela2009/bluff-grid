@@ -112,14 +112,14 @@ const Lobby = () => {
   // Separate useEffect for handling grid selection after joining
   useEffect(() => {
     if (!roomData || !selectedGrid || hasEmittedGridSelection.current) {
-      return;
+      return
     }
-    
-    const currentPlayer = roomData.players.find(p => p.firebaseId === user?.uid);
+
+    const currentPlayer = roomData.players.find(p => p.firebaseId === user?.uid)
     if (currentPlayer && !currentPlayer.selectedGridId) {
-      console.log("🎯 Auto-selecting first grid:", selectedGrid.title);
-      socket.emit("select-grid", { code, gridId: selectedGrid._id });
-      hasEmittedGridSelection.current = true;
+      console.log("🎯 Auto-selecting first grid:", selectedGrid.title)
+      socket.emit("select-grid", { code, gridId: selectedGrid._id })
+      hasEmittedGridSelection.current = true
     }
   }, [roomData, selectedGrid, user?.uid, code])
 
@@ -143,7 +143,7 @@ const Lobby = () => {
       gridId: selectedGrid._id,
       owner: user.uid,
       statements: selectedGrid.statements
-    });
+    })
 
     socket.emit("start-game", {
       code,
@@ -219,14 +219,20 @@ const Lobby = () => {
                 {player.role && (
                   <span className="player-role">{player.role}</span>
                 )}
-                
+
                 {player.selectedGridId && (
-                  <span className="player-grid-status" style={{ fontSize: '0.8em', color: '#28a745' }}>
+                  <span
+                    className="player-grid-status"
+                    style={{ fontSize: "0.8em", color: "#28a745" }}
+                  >
                     ✓ Grid selected
                   </span>
                 )}
                 {!player.selectedGridId && (
-                  <span className="player-grid-status" style={{ fontSize: '0.8em', color: '#dc3545' }}>
+                  <span
+                    className="player-grid-status"
+                    style={{ fontSize: "0.8em", color: "#dc3545" }}
+                  >
                     ⚠ No grid selected
                   </span>
                 )}
@@ -319,13 +325,19 @@ const Lobby = () => {
                 <div className="grid-full-preview">
                   <div className="preview-header">
                     <span className="preview-label">Your Grid Preview</span>
-                    <span className="statements-count">{selectedGrid.statements.length} statements</span>
+                    <span className="statements-count">
+                      {selectedGrid.statements.length} statements
+                    </span>
                   </div>
                   <div className="statements-list">
                     {selectedGrid.statements.map((statement, index) => (
-                      <div 
-                        key={index} 
-                        className={`statement-item ${index === selectedGrid.trueStatementIndex ? 'true-statement' : ''}`}
+                      <div
+                        key={index}
+                        className={`statement-item ${
+                          index === selectedGrid.trueStatementIndex
+                            ? "true-statement"
+                            : ""
+                        }`}
                       >
                         <span className="statement-number">#{index + 1}</span>
                         <span className="statement-text">{statement}</span>

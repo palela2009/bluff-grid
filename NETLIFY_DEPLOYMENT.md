@@ -3,6 +3,7 @@
 ## ✅ Prerequisites Checklist
 
 Before deploying to Netlify, make sure you have:
+
 - [x] MongoDB Atlas account with connection string
 - [x] GitHub repository pushed with latest changes
 - [x] netlify.toml file created (already done!)
@@ -22,11 +23,13 @@ Before deploying to Netlify, make sure you have:
 4. Railway auto-detects Node.js ✅
 
 **Configure Railway:**
+
 - Click on the service → **"Settings"**
 - **Root Directory**: `backend`
 - **Start Command**: `npm start` (should be auto-detected)
 
 **Add Environment Variables:**
+
 - Click **"Variables"** tab
 - Add these:
   ```
@@ -36,6 +39,7 @@ Before deploying to Netlify, make sure you have:
   ```
 
 **Get Your Backend URL:**
+
 - Click **"Settings"** → Find the deployment URL
 - Copy it! Looks like: `https://bluff-grid-production-xxxx.up.railway.app`
 
@@ -50,6 +54,7 @@ Before deploying to Netlify, make sure you have:
 5. Netlify should auto-detect settings from `netlify.toml` ✅
 
 **If not auto-detected, configure:**
+
 ```
 Base directory: frontend
 Build command: npm run build
@@ -57,6 +62,7 @@ Publish directory: frontend/dist
 ```
 
 **Add Environment Variable:**
+
 - Go to **"Site settings"** → **"Environment variables"**
 - Click **"Add a variable"**
 - Key: `VITE_API_URL`
@@ -79,7 +85,7 @@ After deployment, you need to add your Netlify URL to backend CORS:
    const allowedOrigins = [
      "http://localhost:5173",
      "https://your-actual-site.netlify.app", // Add your URL here
-     /\.netlify\.app$/ // Already added - allows all Netlify domains
+     /\.netlify\.app$/, // Already added - allows all Netlify domains
    ];
    ```
 4. Push changes to GitHub
@@ -90,6 +96,7 @@ After deployment, you need to add your Netlify URL to backend CORS:
 ### Step 4: Test Your Deployed Game!
 
 Visit your Netlify URL and test:
+
 - [ ] Site loads
 - [ ] Can sign up/login
 - [ ] Can create grids
@@ -103,23 +110,28 @@ Visit your Netlify URL and test:
 ## 🔧 Common Issues & Fixes
 
 ### ❌ "Failed to fetch" or CORS errors
+
 - **Fix**: Make sure you added your Netlify URL to `allowedOrigins` in backend
 - Railway auto-redeploys when you push to GitHub
 
 ### ❌ "Cannot connect to backend"
+
 - **Fix**: Check `VITE_API_URL` environment variable in Netlify
 - Should be your Railway backend URL
 
 ### ❌ "404 Page Not Found" on refresh
+
 - **Fix**: `netlify.toml` file should handle this (already created!)
 - Make sure redirects rule is in the file
 
 ### ❌ MongoDB connection error
-- **Fix**: 
+
+- **Fix**:
   1. Check `MONGO_URI` in Railway environment variables
   2. In MongoDB Atlas, whitelist Railway's IP (or use 0.0.0.0/0 for all IPs)
 
 ### ❌ Build fails
+
 - **Fix**: Check Netlify build logs
 - Make sure `frontend/package.json` has correct dependencies
 - Try building locally first: `cd frontend && npm run build`
@@ -134,6 +146,7 @@ Visit your Netlify URL and test:
 - **Total**: $0/month! 🎉
 
 When you need to scale:
+
 - Railway Pro: ~$5-20/month for more resources
 - MongoDB paid: $9/month for more storage
 - Custom domain: ~$12/year
@@ -145,13 +158,16 @@ When you need to scale:
 ### Want a custom domain? (bluffgrid.com)
 
 **In Netlify:**
+
 1. Go to **"Domain settings"**
 2. Click **"Add custom domain"**
 3. Enter: `bluffgrid.com`
 4. Netlify shows DNS records to add
 
 **In your domain registrar (Namecheap, GoDaddy):**
+
 1. Add these DNS records:
+
    ```
    Type: A
    Host: @
@@ -161,6 +177,7 @@ When you need to scale:
    Host: www
    Value: your-site.netlify.app
    ```
+
 2. Wait 24-48 hours for DNS propagation
 
 ---
@@ -168,11 +185,13 @@ When you need to scale:
 ## 📊 Monitoring Your Deployment
 
 **Netlify:**
+
 - Check deploy logs: Site overview → Deploys
 - View analytics: Analytics tab
 - Set up deploy notifications
 
 **Railway:**
+
 - Check backend logs: Service → Logs tab
 - Monitor resource usage: Metrics tab
 
@@ -197,6 +216,7 @@ git push origin main
 ## ✅ Deployment Checklist
 
 Before you consider it "done":
+
 - [ ] Backend deployed to Railway
 - [ ] Frontend deployed to Netlify
 - [ ] Environment variables set correctly
@@ -212,6 +232,7 @@ Before you consider it "done":
 ## 🆘 Need Help?
 
 Check:
+
 1. Netlify build logs (in Netlify dashboard)
 2. Railway application logs (in Railway dashboard)
 3. Browser console (F12)
@@ -222,5 +243,6 @@ Check:
 Good luck with your deployment! 🎮🚀
 
 Your game will be live at:
+
 - Frontend: `https://bluff-grid.netlify.app`
 - Backend: `https://bluff-grid-production.up.railway.app`
