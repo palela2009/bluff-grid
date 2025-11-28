@@ -6,6 +6,19 @@
   --about-spacing: 2rem;
 }
 
+/* Ensure emojis render properly */
+.section-icon,
+.feature-icon,
+.info-icon,
+.step-card span,
+.feature-card span {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
 .about-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -53,6 +66,8 @@
 .section-icon {
   font-size: 48px;
   margin-bottom: 16px;
+  background: none;
+  border: none;
 }
 
 .about-section h2 {
@@ -149,6 +164,9 @@
   font-size: 48px;
   display: block;
   margin-bottom: 16px;
+  background: none;
+  border: none;
+  line-height: 1;
 }
 
 .feature-card h3 {
@@ -233,6 +251,9 @@
 
 .info-icon {
   font-size: 24px;
+  background: none;
+  border: none;
+  line-height: 1;
 }
 
 .info-item a {
