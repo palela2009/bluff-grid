@@ -5,10 +5,11 @@
 
 /* Background with animated gradient mesh */
 .home-container {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-  position: relative;
-  overflow: hidden;
+  min-height: 100vh !important;
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  width: 100% !important;
 }
 
 .home-container::before {
@@ -75,73 +76,77 @@
 
 /* Hero Section */
 .hero-section {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 120px 32px 80px;
-  max-width: 1400px;
-  margin: 0 auto;
-  min-height: 70vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: relative !important;
+  z-index: 1 !important;
+  text-align: center !important;
+  padding: 100px 40px 80px 40px !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  min-height: 75vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 .hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 14px 28px;
-  border-radius: 50px;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
-  margin-bottom: 40px;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  padding: 16px 32px !important;
+  border-radius: 50px !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  margin-bottom: 48px !important;
   animation: fadeInDown 0.6s ease-out;
 }
 
 .hero-badge span {
-  font-size: 22px;
+  font-size: 24px !important;
 }
 
 .hero-title {
-  font-size: 90px;
-  font-weight: 900;
-  line-height: 1.05;
-  margin: 0 0 32px;
-  letter-spacing: -3px;
+  font-size: 96px !important;
+  font-weight: 900 !important;
+  line-height: 1.1 !important;
+  margin: 0 0 40px 0 !important;
+  letter-spacing: -4px !important;
   animation: fadeInUp 0.8s ease-out;
 }
 
 .hero-title .gradient-text {
-  background: linear-gradient(135deg, #fff 0%, #a5b4fc 50%, #f0abfc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: block;
+  background: linear-gradient(135deg, #fff 0%, #a5b4fc 50%, #f0abfc 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  display: block !important;
+  font-size: 96px !important;
+  font-weight: 900 !important;
 }
 
 .hero-title .highlight {
-  position: relative;
-  display: inline-block;
-  background: linear-gradient(135deg, #667eea 0%, #ec4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  position: relative !important;
+  display: inline-block !important;
+  background: linear-gradient(135deg, #667eea 0%, #ec4899 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-size: 96px !important;
+  font-weight: 900 !important;
 }
 
 .hero-title .highlight::after {
   content: "";
   position: absolute;
-  bottom: 8px;
+  bottom: 10px;
   left: 0;
   right: 0;
-  height: 16px;
+  height: 20px;
   background: linear-gradient(90deg, #667eea, #ec4899);
   opacity: 0.3;
   border-radius: 4px;
@@ -149,108 +154,108 @@
 }
 
 .hero-subtitle {
-  font-size: 24px;
-  color: rgba(255, 255, 255, 0.75);
-  max-width: 700px;
-  margin: 0 auto 56px;
-  line-height: 1.7;
+  font-size: 26px !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  max-width: 750px !important;
+  margin: 0 auto 60px auto !important;
+  line-height: 1.7 !important;
   animation: fadeInUp 0.8s ease-out 0.1s both;
 }
 
 /* Game Actions */
 .game-actions {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 28px !important;
   animation: fadeInUp 0.8s ease-out 0.2s both;
-  flex-wrap: wrap;
+  flex-wrap: wrap !important;
 }
 
 .host-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 20px 40px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: none;
-  border-radius: 16px;
-  color: white;
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.4);
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding: 22px 48px !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+  border-radius: 18px !important;
+  color: white !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.4) !important;
 }
 
 .host-button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.5);
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.5) !important;
 }
 
 .host-button svg {
-  width: 24px;
-  height: 24px;
+  width: 28px !important;
+  height: 28px !important;
 }
 
 .join-section {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
-  padding: 8px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 18px !important;
+  padding: 10px !important;
 }
 
 .room-input {
-  padding: 16px 20px;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  width: 160px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  text-align: center;
+  padding: 18px 24px !important;
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  width: 180px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 4px !important;
+  text-align: center !important;
 }
 
 .room-input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
-  text-transform: none;
-  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.4) !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
 }
 
 .room-input:focus {
-  outline: none;
+  outline: none !important;
 }
 
 .join-button {
-  padding: 16px 32px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  padding: 18px 36px !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 14px !important;
+  color: white !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
 }
 
 .join-button:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.25) !important;
 }
 
 /* Section Divider */
 .section-divider {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 40px 24px;
+  position: relative !important;
+  z-index: 1 !important;
+  text-align: center !important;
+  padding: 50px 24px !important;
 }
 
 .section-divider::before {
@@ -266,100 +271,100 @@
 .section-divider span {
   position: relative;
   background: linear-gradient(135deg, #0f0c29 0%, #302b63 100%);
-  padding: 0 32px;
-  font-size: 15px;
+  padding: 0 36px;
+  font-size: 16px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
 }
 
 /* Features Section */
 .features-section {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 32px 100px;
+  position: relative !important;
+  z-index: 1 !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 50px 40px 120px 40px !important;
 }
 
 .features-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 32px !important;
 }
 
 .feature-card {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-  padding: 36px 28px;
-  position: relative;
-  transition: all 0.4s ease;
-  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 28px !important;
+  padding: 40px 32px !important;
+  position: relative !important;
+  transition: all 0.4s ease !important;
+  overflow: hidden !important;
 }
 
 .feature-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: translateY(-10px) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35) !important;
 }
 
 .step-number {
-  position: absolute;
-  top: 20px;
-  right: 24px;
-  font-size: 64px;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.05);
-  line-height: 1;
+  position: absolute !important;
+  top: 24px !important;
+  right: 28px !important;
+  font-size: 72px !important;
+  font-weight: 900 !important;
+  color: rgba(255, 255, 255, 0.05) !important;
+  line-height: 1 !important;
 }
 
 .feature-icon {
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 24px;
+  width: 72px !important;
+  height: 72px !important;
+  border-radius: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 28px !important;
 }
 
 .feature-icon.purple {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-  border: 1px solid rgba(102, 126, 234, 0.3);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%) !important;
+  border: 1px solid rgba(102, 126, 234, 0.3) !important;
 }
 
 .feature-icon.pink {
-  background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(244, 114, 182, 0.2) 100%);
-  border: 1px solid rgba(236, 72, 153, 0.3);
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(244, 114, 182, 0.2) 100%) !important;
+  border: 1px solid rgba(236, 72, 153, 0.3) !important;
 }
 
 .feature-icon.blue {
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(34, 211, 238, 0.2) 100%);
-  border: 1px solid rgba(6, 182, 212, 0.3);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(34, 211, 238, 0.2) 100%) !important;
+  border: 1px solid rgba(6, 182, 212, 0.3) !important;
 }
 
 .feature-icon svg {
-  width: 32px;
-  height: 32px;
-  color: white;
+  width: 36px !important;
+  height: 36px !important;
+  color: white !important;
 }
 
 .feature-card h3 {
-  font-size: 22px;
-  font-weight: 700;
-  color: white;
-  margin: 0 0 14px;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: white !important;
+  margin: 0 0 16px 0 !important;
 }
 
 .feature-card p {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.7;
-  margin: 0;
+  font-size: 17px !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  line-height: 1.7 !important;
+  margin: 0 !important;
 }
 
 /* Animations */
@@ -387,100 +392,111 @@
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .hero-title {
-    font-size: 72px;
+  .hero-title,
+  .hero-title .gradient-text,
+  .hero-title .highlight {
+    font-size: 72px !important;
   }
 }
 
 @media (max-width: 968px) {
   .hero-section {
-    padding: 80px 24px 60px;
-    min-height: 60vh;
+    padding: 80px 24px 60px 24px !important;
+    min-height: 60vh !important;
   }
 
-  .hero-title {
-    font-size: 56px;
-    letter-spacing: -2px;
+  .hero-title,
+  .hero-title .gradient-text,
+  .hero-title .highlight {
+    font-size: 56px !important;
+    letter-spacing: -2px !important;
   }
 
   .hero-subtitle {
-    font-size: 20px;
-    margin-bottom: 40px;
+    font-size: 20px !important;
+    margin-bottom: 44px !important;
   }
 
   .features-grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin: 0 auto;
+    grid-template-columns: 1fr !important;
+    max-width: 500px !important;
+    margin: 0 auto !important;
   }
 
   .game-actions {
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: column !important;
+    gap: 20px !important;
   }
 
   .join-section {
-    width: 100%;
-    max-width: 340px;
+    width: 100% !important;
+    max-width: 360px !important;
   }
 
   .room-input {
-    flex: 1;
+    flex: 1 !important;
   }
 }
 
 @media (max-width: 640px) {
   .hero-section {
-    padding: 60px 20px 40px;
+    padding: 60px 20px 40px 20px !important;
   }
 
   .hero-badge {
-    padding: 12px 20px;
-    font-size: 14px;
+    padding: 12px 22px !important;
+    font-size: 15px !important;
   }
 
+  .hero-title,
+  .hero-title .gradient-text,
+  .hero-title .highlight {
+    font-size: 42px !important;
+    letter-spacing: -1px !important;
+  }
+  
   .hero-title {
-    font-size: 42px;
-    letter-spacing: -1px;
-    margin-bottom: 24px;
+    margin-bottom: 28px !important;
   }
 
   .hero-title .highlight::after {
-    height: 10px;
-    bottom: 4px;
+    height: 12px !important;
+    bottom: 5px !important;
   }
 
   .hero-subtitle {
-    font-size: 17px;
-    margin-bottom: 36px;
+    font-size: 17px !important;
+    margin-bottom: 36px !important;
   }
 
   .host-button {
-    width: 100%;
-    justify-content: center;
-    padding: 18px 32px;
-    font-size: 17px;
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 20px 36px !important;
+    font-size: 18px !important;
   }
 
   .features-section {
-    padding: 40px 20px 80px;
+    padding: 40px 20px 80px 20px !important;
   }
 
   .feature-card {
-    padding: 28px 24px;
+    padding: 32px 26px !important;
   }
 
   .feature-card h3 {
-    font-size: 20px;
+    font-size: 22px !important;
   }
 }
 
 @media (max-width: 400px) {
-  .hero-title {
-    font-size: 36px;
+  .hero-title,
+  .hero-title .gradient-text,
+  .hero-title .highlight {
+    font-size: 36px !important;
   }
 
   .hero-subtitle {
-    font-size: 16px;
+    font-size: 16px !important;
   }
 }
