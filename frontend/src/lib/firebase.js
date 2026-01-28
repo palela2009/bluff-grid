@@ -18,6 +18,9 @@ googleProvider.setCustomParameters({
 });
 const facebookProvider = new FacebookAuthProvider();
 
-await setPersistence(auth, browserLocalPersistence);
+// Set persistence without top-level await for better mobile compatibility
+setPersistence(auth, browserLocalPersistence).catch((error) => {
+  console.error('Failed to set persistence:', error);
+});
 
 export { auth, googleProvider, facebookProvider };

@@ -20,6 +20,17 @@ const isMobile = () => {
   )
 }
 
+// Detect if running in Safari (iOS has issues with popup)
+const isSafari = () => {
+  return /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+}
+
+// Detect if running in an iframe or WebView
+const isInAppBrowser = () => {
+  const ua = navigator.userAgent || navigator.vendor || window.opera
+  return ua.includes('FBAN') || ua.includes('FBAV') || ua.includes('Instagram') || ua.includes('Twitter')
+}
+
 export default function Layout() {
   const { user, setUser } = useContext(AuthContext)
   const [darkMode, setDarkMode] = useState(() => {
@@ -29,6 +40,7 @@ export default function Layout() {
   const [soundEnabled, setSoundEnabled] = useState(() =>
     soundManager.isEnabled()
   )
+  const [isLoggingIn, setIsLoggingIn] = useState(false)
 
   // Apply dark mode to document
   useEffect(() => {
@@ -54,16 +66,24 @@ export default function Layout() {
   useEffect(() => {
     const handleRedirect = async () => {
       try {
+        // Check if we're returning from a redirect
         const result = await getRedirectResult(auth)
         if (result && result.user) {
           console.log("Mobile redirect successful, user:", result.user)
           // AuthContext will handle setting the user via onAuthStateChanged
-          await axiosInstance
-            .post("/users")
-            .catch(err => console.error("User creation failed", err))
+          try {
+            await axiosInstance.post("/users")
+            soundManager.play("notification")
+          } catch (err) {
+            console.error("User creation failed", err)
+          }
         }
       } catch (err) {
         console.error("Redirect result error:", err)
+        // Handle specific Firebase errors
+        if (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user') {
+          console.log("Popup was blocked or closed, will try redirect next time")
+        }
       }
     }
 
@@ -71,40 +91,81 @@ export default function Layout() {
   }, [])
 
   const handleGoogleLogin = async () => {
+    if (isLoggingIn) return // Prevent double-clicks
+    setIsLoggingIn(true)
     soundManager.play("click")
+    
     googleProvider.setCustomParameters({
       prompt: "select_account"
     })
+    
     try {
-      if (isMobile()) {
-        // Use redirect on mobile
+      // Use redirect for mobile, Safari, or in-app browsers
+      // These have issues with popups
+      const shouldUseRedirect = isMobile() || isSafari() || isInAppBrowser()
+      
+      if (shouldUseRedirect) {
+        // Store a flag to indicate we're in the login process
+        sessionStorage.setItem('loginPending', 'true')
         await signInWithRedirect(auth, googleProvider)
+        // Note: code after redirect won't run, page will reload
       } else {
-        // Use popup on desktop
-        await signInWithPopup(auth, googleProvider)
-        await axiosInstance.post("/users")
-        soundManager.play("notification")
+        // Use popup on desktop browsers
+        const result = await signInWithPopup(auth, googleProvider)
+        if (result.user) {
+          await axiosInstance.post("/users")
+          soundManager.play("notification")
+        }
       }
     } catch (err) {
       console.error("Google login failed", err)
+      // If popup fails, try redirect as fallback
+      if (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user') {
+        try {
+          sessionStorage.setItem('loginPending', 'true')
+          await signInWithRedirect(auth, googleProvider)
+        } catch (redirectErr) {
+          console.error("Redirect also failed:", redirectErr)
+        }
+      }
+    } finally {
+      setIsLoggingIn(false)
     }
   }
 
   const handleFacebookLogin = async () => {
+    if (isLoggingIn) return // Prevent double-clicks
+    setIsLoggingIn(true)
+    
     facebookProvider.setCustomParameters({
       auth_type: "reauthenticate"
     })
+    
     try {
-      if (isMobile()) {
-        // Use redirect on mobile
+      // Use redirect for mobile, Safari, or in-app browsers
+      const shouldUseRedirect = isMobile() || isSafari() || isInAppBrowser()
+      
+      if (shouldUseRedirect) {
+        sessionStorage.setItem('loginPending', 'true')
         await signInWithRedirect(auth, facebookProvider)
       } else {
-        // Use popup on desktop
-        await signInWithPopup(auth, facebookProvider)
-        await axiosInstance.post("/users")
+        const result = await signInWithPopup(auth, facebookProvider)
+        if (result.user) {
+          await axiosInstance.post("/users")
+        }
       }
     } catch (err) {
       console.error("Facebook login failed", err)
+      if (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user') {
+        try {
+          sessionStorage.setItem('loginPending', 'true')
+          await signInWithRedirect(auth, facebookProvider)
+        } catch (redirectErr) {
+          console.error("Redirect also failed:", redirectErr)
+        }
+      }
+    } finally {
+      setIsLoggingIn(false)
     }
   }
 
@@ -149,7 +210,17 @@ export default function Layout() {
           </button>
           {!user && (
             <>
-              <button onClick={handleGoogleLogin}>Login with Google</button>
+              <button 
+                onClick={handleGoogleLogin} 
+                disabled={isLoggingIn}
+                className="login-button"
+                style={{ 
+                  opacity: isLoggingIn ? 0.7 : 1,
+                  cursor: isLoggingIn ? 'wait' : 'pointer'
+                }}
+              >
+                {isLoggingIn ? 'Signing in...' : 'Login with Google'}
+              </button>
             </>
           )}
           <Link
