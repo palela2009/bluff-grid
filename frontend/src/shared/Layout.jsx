@@ -131,93 +131,89 @@ export default function Layout() {
       console.error("Logout failed", err)
     }
   }
-  console.log("User object:", user)
+
   return (
-    <div className="container">
-      <header
-        style={{
+    <div className="app-container">
+      <header>
+        <div className="header-content" style={{
           display: "flex",
-          gap: "1rem",
-          padding: "1rem",
           alignItems: "center",
-          justifyContent: "space-between"
-        }}
-      >
-        <h1>Bluff Grid</h1>
-        <div>
-          <button
-            onClick={toggleSound}
-            className="sound-toggle"
-            title={soundEnabled ? "Sound On" : "Sound Off"}
-          >
-            {soundEnabled ? "🔊" : "🔇"}
-          </button>
-          <button
-            onClick={toggleDarkMode}
-            className="dark-mode-toggle"
-            title={darkMode ? "Light Mode" : "Dark Mode"}
-          >
-            {darkMode ? "☀️" : "🌙"}
-          </button>
-          {!user && (
-            <>
-              <button 
-                onClick={handleGoogleLogin} 
-                disabled={isLoggingIn}
-                className="login-button"
-                style={{ 
-                  opacity: isLoggingIn ? 0.7 : 1,
-                  cursor: isLoggingIn ? 'wait' : 'pointer'
-                }}
-              >
-                {isLoggingIn ? 'Signing in...' : 'Login with Google'}
-              </button>
-              {loginError && (
-                <span style={{ color: '#ef4444', fontSize: '12px', marginLeft: '8px' }}>
-                  {loginError}
-                </span>
-              )}
-            </>
-          )}
-          <Link
-            to="/"
-            className="homebutton"
-            onClick={() => soundManager.play("click")}
-          >
-            home
+          justifyContent: "space-between",
+          width: "100%"
+        }}>
+          <Link to="/" onClick={() => soundManager.play("click")}>
+            <h1>Bluff Grid</h1>
           </Link>
-          <Link
-            to="/profile"
-            className="profilebutton"
-            onClick={() => soundManager.play("click")}
-          >
-            profile
-          </Link>
-          <Link
-            to="/create"
-            className="createbutton"
-            onClick={() => soundManager.play("click")}
-          >
-            create
-          </Link>
-          <Link
-            to="/about"
-            className="aboutbutton"
-            onClick={() => soundManager.play("click")}
-          >
-            about
-          </Link>
-          {user && (
-            <>
-              <img
-                src={user.photoUrl}
-                alt="Profile"
-                style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-              />
-              <span>{user.username}</span>
-              <button onClick={handleLogout}>Logout</button>
-            </>
-          )}
+          
+          <div className="nav-container">
+            <button
+              onClick={toggleSound}
+              className="sound-toggle"
+              title={soundEnabled ? "Sound On" : "Sound Off"}
+            >
+              {soundEnabled ? "🔊" : "🔇"}
+            </button>
+            <button
+              onClick={toggleDarkMode}
+              className="dark-mode-toggle"
+              title={darkMode ? "Light Mode" : "Dark Mode"}
+            >
+              {darkMode ? "☀️" : "🌙"}
+            </button>
+            
+            <Link
+              to="/"
+              className="homebutton nav-link"
+              onClick={() => soundManager.play("click")}
+            >
+              Home
+            </Link>
+            <Link
+              to="/profile"
+              className="profilebutton nav-link"
+              onClick={() => soundManager.play("click")}
+            >
+              Profile
+            </Link>
+            <Link
+              to="/create"
+              className="createbutton nav-link"
+              onClick={() => soundManager.play("click")}
+            >
+              Create
+            </Link>
+            <Link
+              to="/about"
+              className="aboutbutton nav-link"
+              onClick={() => soundManager.play("click")}
+            >
+              About
+            </Link>
+            
+            {!user ? (
+              <>
+                <button 
+                  onClick={handleGoogleLogin} 
+                  disabled={isLoggingIn}
+                  className="login-button"
+                >
+                  {isLoggingIn ? '⏳ Signing in...' : '🔐 Login'}
+                </button>
+                {loginError && (
+                  <span className="login-error">{loginError}</span>
+                )}
+              </>
+            ) : (
+              <div className="user-section">
+                <img
+                  src={user.photoUrl}
+                  alt="Profile"
+                />
+                <span className="username">{user.username}</span>
+                <button onClick={handleLogout}>Logout</button>
+              </div>
+            )}
+          </div>
         </div>
       </header>
 

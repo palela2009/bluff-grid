@@ -1,10 +1,15 @@
+/* ============================================
+   BLUFF GRID - FOOTER
+   Modern Glass Design
+   ============================================ */
+
 .app-footer {
-  background: linear-gradient(135deg, #1e3a8a 0%, #581c87 100%);
-  padding: 24px 20px;
+  background: rgba(15, 12, 41, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 32px 24px;
   text-align: center;
-  margin-top: auto;
-  border-top: 3px solid #fbbf24;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .footer-content {
@@ -15,21 +20,67 @@
 .footer-text {
   margin: 0 0 8px 0;
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.7);
   font-weight: 500;
+}
+
+.footer-text span {
+  background: linear-gradient(135deg, #667eea 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
 }
 
 .footer-creator {
   margin: 0;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
   font-weight: 400;
+}
+
+.footer-creator a {
+  color: #818cf8;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-creator a:hover {
+  color: #a5b4fc;
+}
+
+/* Social Links */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .app-footer {
-    padding: 20px 16px;
+    padding: 24px 16px;
   }
 
   .footer-text {
@@ -38,5 +89,11 @@
 
   .footer-creator {
     font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-footer {
+    padding: 20px 12px;
   }
 }
