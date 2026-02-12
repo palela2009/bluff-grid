@@ -4,7 +4,7 @@ import "./game.css"
 import { QuestionCard } from "./questionCard"
 import { socket } from "../../socket"
 import { AuthContext } from "../../lib/AuthContext"
-import { Trophy } from "lucide-react"
+import { Trophy, Clock, Users, Zap, SkipForward, ArrowRight, Home } from "lucide-react"
 import soundManager from "../../lib/sounds"
 
 export function Game() {
@@ -211,13 +211,16 @@ export function Game() {
 
   if (gamePhase === "finished") {
     return (
-      <div className="container">
+      <div className="game-page">
         <div className="game-over-screen">
           <div className="game-over-content">
-            <div className="game-over-icon"></div>
+            <div className="game-over-icon">
+              <Trophy size={40} color="white" />
+            </div>
             <h1>Game Over!</h1>
             <p>Thanks for playing Bluff Grid!</p>
-            <button className="btn btn-primary" onClick={handleBackToLobby}>
+            <button className="game-btn game-btn-primary" onClick={handleBackToLobby}>
+              <Home size={20} />
               Back to Home
             </button>
           </div>
@@ -228,8 +231,11 @@ export function Game() {
 
   if (!roomData || !currentQuestion) {
     return (
-      <div className="container">
-        <div className="loading">Loading game...</div>
+      <div className="game-page">
+        <div className="game-loading">
+          <div className="loading-spinner"></div>
+          <p>Loading game...</p>
+        </div>
       </div>
     )
   }
@@ -244,50 +250,59 @@ export function Game() {
   const answerOptions = generateAnswers()
 
   return (
-    <div className="container">
-      <div className="game-header">
-        <div className="game-header-top">
-          <div className="round-info">
-            <span className="round-badge">
-              Round {(roomData?.roundIndex || 0) + 1}/
-              {roomData?.players?.length || 1}
-            </span>
+    <div className="game-page">
+      {/* Top Bar */}
+      <div className="game-top-bar">
+        <div className="top-bar-left">
+          <div className="round-badge">
+            <Zap size={16} />
+            Round {(roomData?.roundIndex || 0) + 1}/{roomData?.players?.length || 1}
           </div>
-          <div className="timer">{timeLeft}s</div>
+          {roomData?.selectedGridTitle && (
+            <div className="grid-badge">
+              {roomData.selectedGridTitle}
+              {roomData.selectedGridOwner === socket.id && (
+                <span className="your-grid-tag">Your Grid</span>
+              )}
+            </div>
+          )}
         </div>
-
-        <div className="players-section">
-          <p className="players-label">Players in game:</p>
-          <div className="players-list">
-            {players.map(player => (
-              <div
-                key={player.id}
-                className={`player-tag ${
-                  player.id === socket.id ? "active" : ""
-                }`}
-              >
-                {player.name}
-              </div>
-            ))}
+        <div className="top-bar-right">
+          <div className={`timer-display ${timeLeft <= 10 ? "timer-danger" : timeLeft <= 20 ? "timer-warning" : ""}`}>
+            <Clock size={20} />
+            <span className="timer-value">{timeLeft}</span>
+            <span className="timer-unit">s</span>
           </div>
         </div>
       </div>
 
-      <div className="question-display">
-        <h3 className="current-question">
-          {roomData?.questions?.[0]?.text ||
-            "Which statement is TRUE about you?"}
-        </h3>
-        {roomData?.selectedGridTitle && (
-          <div className="grid-info">
-            <p className="grid-title">Playing: {roomData.selectedGridTitle}</p>
-            {roomData.selectedGridOwner === socket.id && (
-              <p className="grid-owner">(This is your grid!)</p>
-            )}
-          </div>
+      {/* Players Strip */}
+      <div className="players-strip">
+        <Users size={16} />
+        <div className="players-chips">
+          {players.map(player => (
+            <div
+              key={player.id}
+              className={`player-chip ${player.id === socket.id ? "player-you" : ""}`}
+            >
+              {player.name}
+              {player.id === socket.id && <span className="you-tag">You</span>}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Question */}
+      <div className="question-section">
+        <h2 className="question-text">
+          {roomData?.questions?.[0]?.text || "Which statement is TRUE?"}
+        </h2>
+        {!showAnswer && (
+          <p className="question-hint">Pick the statement you think is true</p>
         )}
       </div>
 
+      {/* Answer Cards */}
       <QuestionCard
         question="Which statement is TRUE about you?"
         answers={answerOptions}
@@ -302,31 +317,26 @@ export function Game() {
         voteCounts={voteCounts}
       />
 
-      {isHost && !showAnswer && (
-        <div style={{ marginTop: 16 }}>
+      {/* Host Controls */}
+      <div className="host-controls">
+        {isHost && !showAnswer && (
           <button
-            className="btn btn-warning"
+            className="game-btn game-btn-skip"
             onClick={() => {
               console.log("⏩ Host forcing show results")
               socket.emit("force-show-results", { code: roomCode })
             }}
           >
+            <SkipForward size={18} />
             Skip & Show Results
           </button>
-          <p style={{ fontSize: "0.9em", color: "#666", marginTop: 8 }}>
-            Click if you want to skip waiting for other players
-          </p>
-        </div>
-      )}
+        )}
 
-      {isHost && showAnswer && (
-        <div style={{ marginTop: 16 }}>
+        {isHost && showAnswer && (
           <button
-            className="btn btn-primary"
+            className="game-btn game-btn-primary game-btn-next"
             onClick={() => {
               console.log("Next Player Grid clicked. Room code:", roomCode)
-              console.log("Current room data:", roomData)
-              // Compute next player's firebaseId from roundOrder
               const currentIdx = roomData?.roundIndex || 0
               const nextIdx = currentIdx + 1
               const nextSocketId = roomData?.roundOrder?.[nextIdx]
@@ -334,12 +344,6 @@ export function Game() {
                 p => p.id === nextSocketId
               )
               const nextOwnerFirebaseId = nextPlayer?.firebaseId
-              console.log(
-                "Next player:",
-                nextPlayer?.name,
-                "FirebaseId:",
-                nextOwnerFirebaseId
-              )
               socket.emit("next-player-grid", {
                 code: roomCode,
                 selectedGridOwner: nextOwnerFirebaseId
@@ -347,9 +351,10 @@ export function Game() {
             }}
           >
             Next Player's Grid
+            <ArrowRight size={20} />
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }
