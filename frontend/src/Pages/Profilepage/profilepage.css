@@ -212,16 +212,21 @@
 }
 
 .grid-delete-btn {
-  width: 34px; height: 34px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(239,68,68,0.1);
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px;
+  background: rgba(239,68,68,0.08);
   border: 1px solid rgba(239,68,68,0.2);
   border-radius: 10px;
   color: #f87171; cursor: pointer;
+  font-family: inherit; font-size: 13px; font-weight: 600;
   transition: all 0.3s ease; flex-shrink: 0;
 }
 .grid-delete-btn:hover {
-  background: rgba(239,68,68,0.2); transform: scale(1.08);
+  background: rgba(239,68,68,0.25);
+  border-color: rgba(239,68,68,0.45);
+  color: #fca5a5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(239,68,68,0.2);
 }
 
 /* Statements preview */

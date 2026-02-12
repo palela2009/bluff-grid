@@ -132,7 +132,8 @@ const ProfilePage = () => {
                     onClick={() => handleDeleteGrid(grid._id)}
                     title="Delete grid"
                   >
-                    <Trash2 size={16} />
+                    <Trash2 size={14} />
+                    Delete
                   </button>
                 </div>
 

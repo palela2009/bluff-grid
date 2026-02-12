@@ -202,9 +202,10 @@
 .answer-card {
   display: flex;
   align-items: center;
-  gap: 18px;
+  flex-wrap: wrap;
+  gap: 14px;
   width: 100%;
-  padding: 22px 24px;
+  padding: 20px 22px;
   background: rgba(255, 255, 255, 0.05);
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 18px;
@@ -243,14 +244,14 @@
 
 /* Answer number */
 .answer-number {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 800;
   color: rgba(255, 255, 255, 0.5);
   flex-shrink: 0;
@@ -269,11 +270,13 @@
 }
 
 .answer-text {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
-  line-height: 1.55;
+  line-height: 1.45;
   margin: 0;
   color: rgba(255, 255, 255, 0.9);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* ===== ANSWER STATES ===== */
@@ -333,18 +336,20 @@
 /* Result badges */
 .answer-result {
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .result-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: 10px;
-  font-size: 13px;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 .correct-badge {
@@ -366,9 +371,10 @@
 
 /* Vote bar */
 .vote-bar-wrapper {
+  flex-basis: 100%;
   width: 100%;
-  margin-top: 14px;
-  padding-top: 14px;
+  margin-top: 4px;
+  padding-top: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
