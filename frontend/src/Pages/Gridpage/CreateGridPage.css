@@ -1,217 +1,211 @@
 /* ============================================
    BLUFF GRID - CREATE GRID PAGE
-   Modern Glass Design
+   Premium Design
    ============================================ */
 
 .create-grid-main {
-  max-width: 800px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: 32px 24px 80px;
   min-height: calc(100vh - 160px);
 }
 
+/* Back link */
 .create-grid-header {
-  margin-bottom: 32px;
-  animation: fadeInDown 0.4s ease;
+  margin-bottom: 28px;
+  animation: cgFadeDown 0.4s ease;
 }
 
 .back-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 18px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 12px;
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  font-weight: 600;
   font-size: 14px;
+  font-family: inherit;
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .back-link:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.08);
   color: white;
-  transform: translateX(-4px);
+  transform: translateX(-3px);
 }
 
+/* Main content card */
 .create-grid-content {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 24px;
-  padding: 40px;
-  animation: fadeInUp 0.5s ease;
+  padding: 44px 40px;
+  animation: cgSlideUp 0.5s ease;
 }
 
+/* Title section */
 .create-grid-title-section {
   text-align: center;
   margin-bottom: 40px;
 }
-
 .create-grid-title-section h1 {
   font-size: 32px;
-  font-weight: 700;
-  margin: 0 0 12px 0;
-  background: linear-gradient(135deg, #ffffff 0%, #818cf8 50%, #ec4899 100%);
+  font-weight: 900;
+  margin: 0 0 12px;
+  background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: -0.5px;
 }
-
 .subtitle {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255,255,255,0.45);
   margin: 0;
   line-height: 1.6;
 }
 
-/* Grid Title Input Section */
+/* Grid title input */
 .grid-title-section {
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
-
 .form-label {
   display: block;
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
   margin-bottom: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
-
 .grid-title-input {
   width: 100%;
   padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255,255,255,0.05);
+  border: 2px solid rgba(255,255,255,0.08);
   border-radius: 14px;
   color: white;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
+  font-family: inherit;
   transition: all 0.3s ease;
   box-sizing: border-box;
 }
-
 .grid-title-input::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255,255,255,0.25);
+  font-weight: 400;
 }
-
 .grid-title-input:hover {
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255,255,255,0.15);
 }
-
 .grid-title-input:focus {
   outline: none;
   border-color: #818cf8;
-  box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.15);
-  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 4px rgba(129,140,248,0.1);
+  background: rgba(255,255,255,0.07);
 }
 
-/* Statements Section */
+/* Statements section */
 .statements-section {
   margin-bottom: 32px;
 }
-
 .statements-title {
   font-size: 20px;
   font-weight: 700;
   color: white;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px;
 }
-
 .statements-subtitle {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
-  margin: 0 0 24px 0;
-  line-height: 1.5;
+  color: rgba(255,255,255,0.45);
+  margin: 0 0 24px;
+  line-height: 1.55;
 }
 
 .statements-grid {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
+/* Statement item */
 .statement-item {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
   border-radius: 16px;
   padding: 20px;
   transition: all 0.3s ease;
 }
-
 .statement-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
 }
 
 .statement-input {
   width: 100%;
   padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.04);
+  border: 2px solid rgba(255,255,255,0.08);
   border-radius: 12px;
   color: white;
   font-size: 15px;
   font-family: inherit;
-  line-height: 1.5;
+  line-height: 1.55;
   resize: vertical;
-  min-height: 60px;
+  min-height: 56px;
   transition: all 0.3s ease;
   box-sizing: border-box;
 }
-
 .statement-input::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255,255,255,0.25);
 }
-
 .statement-input:focus {
   outline: none;
   border-color: #818cf8;
-  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.15);
+  box-shadow: 0 0 0 3px rgba(129,140,248,0.1);
+  background: rgba(255,255,255,0.06);
 }
 
+/* Mark truth button */
 .mark-truth-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   margin-top: 12px;
   padding: 10px 18px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 10px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255,255,255,0.55);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: inherit;
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .mark-truth-btn:hover {
-  background: rgba(16, 185, 129, 0.1);
-  border-color: rgba(16, 185, 129, 0.3);
-  color: #10b981;
+  background: rgba(16,185,129,0.08);
+  border-color: rgba(16,185,129,0.25);
+  color: #34d399;
 }
-
 .mark-truth-btn.active {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #10b981, #059669);
   border-color: transparent;
   color: white;
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 16px rgba(16,185,129,0.3);
 }
 
-/* Error Messages */
+/* Error messages */
 .error-message {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 12px 16px;
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.2);
   border-radius: 10px;
   color: #fca5a5;
   font-size: 14px;
@@ -219,47 +213,44 @@
   margin-top: 12px;
 }
 
-/* Action Buttons */
+/* Action buttons */
 .create-grid-actions {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   justify-content: flex-end;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 24px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-top: 28px;
 }
 
 .btn {
   padding: 14px 28px;
-  border-radius: 12px;
+  border-radius: 14px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: inherit;
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
 }
-
 .btn-outline {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6);
 }
-
 .btn-outline:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.08);
   color: white;
 }
-
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
+  box-shadow: 0 4px 20px rgba(102,126,234,0.35);
 }
-
 .btn-primary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(102,126,234,0.5);
 }
-
 .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -267,72 +258,28 @@
 }
 
 /* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes cgSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes cgFadeDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
-  .create-grid-main {
-    padding: 24px 16px;
-  }
-
-  .create-grid-content {
-    padding: 28px 20px;
-    border-radius: 20px;
-  }
-
-  .create-grid-title-section h1 {
-    font-size: 26px;
-  }
-
-  .subtitle {
-    font-size: 14px;
-  }
-
-  .create-grid-actions {
-    flex-direction: column;
-  }
-
-  .btn {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-  }
+  .create-grid-main { padding: 24px 16px 60px; }
+  .create-grid-content { padding: 28px 20px; border-radius: 20px; }
+  .create-grid-title-section h1 { font-size: 26px; }
+  .subtitle { font-size: 14px; }
+  .create-grid-actions { flex-direction: column; }
+  .btn { width: 100%; text-align: center; display: flex; justify-content: center; }
 }
 
 @media (max-width: 480px) {
-  .create-grid-main {
-    padding: 16px 12px;
-  }
-
-  .create-grid-content {
-    padding: 24px 16px;
-  }
-
-  .create-grid-title-section h1 {
-    font-size: 22px;
-  }
-
-  .statement-item {
-    padding: 16px;
-  }
+  .create-grid-main { padding: 16px 12px 48px; }
+  .create-grid-content { padding: 24px 16px; }
+  .create-grid-title-section h1 { font-size: 22px; }
+  .statement-item { padding: 16px; }
 }
