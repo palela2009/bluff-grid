@@ -8,7 +8,14 @@ import "./profilepage.css"
 const ProfilePage = () => {
   const navigate = useNavigate()
   const { user } = useContext(AuthContext)
-  const [grids, setGrids] = useState([])
+
+  // Load cached grids instantly from localStorage
+  const [grids, setGrids] = useState(() => {
+    try {
+      const cached = localStorage.getItem("cached_grids")
+      return cached ? JSON.parse(cached) : []
+    } catch { return [] }
+  })
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -22,15 +29,22 @@ const ProfilePage = () => {
       return
     }
 
+    // If we have cached grids, show them immediately (no loading spinner)
+    const hasCached = grids.length > 0
+    if (!hasCached) setLoading(true)
+
     console.log("👤 Fetching grids for user:", user.uid, user.email)
     try {
-      setLoading(true)
       const response = await axiosInstance.get(`/grids`)
       console.log("✅ Grids fetched:", response.data)
-      setGrids(response.data || [])
+      const freshGrids = response.data || []
+      setGrids(freshGrids)
+      // Cache for next visit
+      try { localStorage.setItem("cached_grids", JSON.stringify(freshGrids)) } catch {}
     } catch (error) {
       console.error("Error fetching grids:", error)
-      setGrids([])
+      // Keep cached grids on error instead of clearing
+      if (!hasCached) setGrids([])
     } finally {
       setLoading(false)
     }
@@ -43,7 +57,9 @@ const ProfilePage = () => {
 
     try {
       await axiosInstance.delete(`/grids/${gridId}`)
-      setGrids(grids.filter(g => g._id !== gridId))
+      const updated = grids.filter(g => g._id !== gridId)
+      setGrids(updated)
+      try { localStorage.setItem("cached_grids", JSON.stringify(updated)) } catch {}
     } catch (error) {
       console.error("Error deleting grid:", error)
       alert("Failed to delete grid. Please try again.")

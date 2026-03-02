@@ -14,8 +14,20 @@ const Lobby = () => {
   const code = params.get("code") || "UNKNOWN"
   const isHost = params.get("host") === "true"
   const [players, setPlayers] = useState([])
-  const [selectedGrid, setSelectedGrid] = useState(null)
-  const [userGrids, setUserGrids] = useState([])
+  const [selectedGrid, setSelectedGrid] = useState(() => {
+    try {
+      const cached = localStorage.getItem("cached_grids")
+      const grids = cached ? JSON.parse(cached) : []
+      return grids.length > 0 ? grids[0] : null
+    } catch { return null }
+  })
+  // Load cached grids instantly
+  const [userGrids, setUserGrids] = useState(() => {
+    try {
+      const cached = localStorage.getItem("cached_grids")
+      return cached ? JSON.parse(cached) : []
+    } catch { return [] }
+  })
   const [roomData, setRoomData] = useState(null)
   const [error, setError] = useState("")
   const hasEmittedGridSelection = useRef(false)
@@ -26,20 +38,24 @@ const Lobby = () => {
     const fetchUserGrids = async () => {
       if (!user?.uid) return
 
+      // If cached grids exist, skip loading spinner
+      const hasCached = userGrids.length > 0
+      if (!hasCached) setLoadingGrids(true)
+      
       try {
-        setLoadingGrids(true)
         const response = await axiosInstance.get("/grids")
         setUserGrids(response.data)
+        try { localStorage.setItem("cached_grids", JSON.stringify(response.data)) } catch {}
 
         // Set the first grid as default if available
-        if (response.data.length > 0) {
+        if (response.data.length > 0 && !selectedGrid) {
           const firstGrid = response.data[0]
           setSelectedGrid(firstGrid)
           // Note: We'll emit select-grid after joining the room
         }
       } catch (err) {
         console.error("Failed to fetch grids:", err)
-        setError("Failed to load your bluff grids")
+        if (!hasCached) setError("Failed to load your bluff grids")
       } finally {
         setLoadingGrids(false)
       }

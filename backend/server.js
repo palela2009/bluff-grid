@@ -638,12 +638,33 @@ app.get('/api/health', (req, res) => {
 });
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, {
+    // Faster connection: reduce timeout from default 30s to 10s
+    serverSelectionTimeoutMS: 10000,
+    // Keep connections alive
+    heartbeatFrequencyMS: 10000,
+    // Socket timeout
+    socketTimeoutMS: 45000,
+  })
   .then(() => {
     console.log('✅ MongoDB connected');
     httpServer.listen(PORT, () => {
       console.log(`🚀 Server ready on port ${PORT}`);
       console.log(`📡 Socket.IO server is running`);
+
+      // Self-ping every 10 minutes to prevent cold starts on Railway/Render
+      const SELF_URL = process.env.RAILWAY_PUBLIC_DOMAIN
+        ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`
+        : process.env.RENDER_EXTERNAL_URL
+          ? process.env.RENDER_EXTERNAL_URL
+          : null;
+      
+      if (SELF_URL) {
+        setInterval(() => {
+          fetch(`${SELF_URL}/api/health`).catch(() => {});
+          console.log('🏓 Keep-alive ping sent');
+        }, 10 * 60 * 1000); // every 10 minutes
+      }
     });
   })
   .catch((err) => {
