@@ -90,8 +90,8 @@
 }
 
 .hero-logo {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: contain;
   flex-shrink: 0;
   filter: drop-shadow(0 4px 20px rgba(102, 126, 234, 0.5));
@@ -379,8 +379,8 @@
     letter-spacing: -2px;
   }
   .hero-logo {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
   }
   .hero-line-2 {
     font-size: 56px;
@@ -411,8 +411,8 @@
     gap: 12px;
   }
   .hero-logo {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
   }
   .hero-line-1 {
     font-size: 38px;
@@ -459,8 +459,8 @@
 
 @media (max-width: 400px) {
   .hero-logo {
-    width: 56px;
-    height: 56px;
+    width: 80px;
+    height: 80px;
   }
   .hero-line-1 {
     font-size: 32px;
