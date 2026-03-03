@@ -48,8 +48,11 @@ export const Home = () => {
         </div>
 
         <h1 className="hero-heading">
-          <span className="hero-line-1">Can Your Friends</span>
-          <span className="hero-line-2">Spot The Truth?</span>
+          <img src="/logo.png" alt="BG" className="hero-logo" />
+          <div>
+            <span className="hero-line-1">Can Your Friends</span>
+            <span className="hero-line-2">Spot The Truth?</span>
+          </div>
         </h1>
 
         <p className="hero-desc">

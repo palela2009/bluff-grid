@@ -141,7 +141,8 @@ export default function Layout() {
           justifyContent: "space-between",
           width: "100%"
         }}>
-          <Link to="/" onClick={() => soundManager.play("click")}>
+          <Link to="/" onClick={() => soundManager.play("click")} className="brand-link">
+            <img src="/logo.png" alt="BG" className="nav-logo" />
             <h1>Bluff Grid</h1>
           </Link>
           
