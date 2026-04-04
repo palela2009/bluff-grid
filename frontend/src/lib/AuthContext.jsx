@@ -18,21 +18,17 @@ export const AuthContextProvider = ({ children }) => {
       if (firebaseUser) {
         const token = await firebaseUser.getIdToken()
 
-        // Get user info from Firebase
         let username = firebaseUser.displayName
         const photoUrl = firebaseUser.photoURL
         const email = firebaseUser.email
         const uid = firebaseUser.uid
 
-        // If displayName is not available, try to get it from the user object
         if (!username) {
-          // Wait a bit for Firebase to populate the user object
           await new Promise(resolve => setTimeout(resolve, 100))
           username =
             firebaseUser.displayName || email?.split("@")[0] || "Anonymous"
         }
 
-        // Ensure we have a username
         if (!username) {
           username = email?.split("@")[0] || "Anonymous"
         }

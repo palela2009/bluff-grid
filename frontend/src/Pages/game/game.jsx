@@ -22,23 +22,19 @@ export function Game() {
   const [answers, setAnswers] = useState([])
   const [isHost, setIsHost] = useState(false)
   const [voteCounts, setVoteCounts] = useState([])
-  const hasJoinedRoom = useRef(false) // Track if we've already joined
+  const hasJoinedRoom = useRef(false)
 
-  // Get room code from URL or fallback to roomData
   const params = new URLSearchParams(location.search)
   const roomCode = params.get("code") || location.state?.roomData?.code
 
   console.log("Game component loaded. Room code:", roomCode)
 
-  // Join room ONCE when component mounts
   useEffect(() => {
-    // Prevent double-joining in React StrictMode
     if (hasJoinedRoom.current) {
       console.log("⚠️ Already joined room, skipping duplicate join")
       return
     }
 
-    // Get room data from navigation state
     if (!location.state?.roomData) {
       console.warn("No room data in navigation state, redirecting to home")
       navigate("/")
@@ -57,12 +53,10 @@ export function Game() {
     const hostStatus = location.state.isHost
     setIsHost(hostStatus)
 
-    // Find the current player's data from room to get their selectedGridId
     const currentPlayerData = location.state.roomData.players.find(
       p => p.firebaseId === user?.uid
     )
 
-    // Re-join the room immediately with player data
     if (!socket.connected) {
       socket.connect()
     }
@@ -74,20 +68,17 @@ export function Game() {
         role: hostStatus ? "Host" : "Player",
         photoUrl: user?.photoUrl,
         firebaseId: user?.uid,
-        selectedGridId: currentPlayerData?.selectedGridId // Pass the selectedGridId!
+        selectedGridId: currentPlayerData?.selectedGridId
       }
     })
 
-    // Mark that we've joined
     hasJoinedRoom.current = true
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []) // Run ONLY ONCE on mount
+  }, [])
 
-  // Listen for socket events
   useEffect(() => {
     if (!roomCode) return
 
-    // Listen for next question
     socket.on("next-question", roomData => {
       soundManager.play("notification")
       setRoomData(roomData)
@@ -98,16 +89,13 @@ export function Game() {
       setTimeLeft(60)
     })
 
-    // Listen for game finished
     socket.on("game-finished", roomData => {
       soundManager.play("victory")
       setGamePhase("finished")
       setRoomData(roomData)
-      // Navigate to leaderboard with scores
       navigate("/leaderboard", { state: { roomData } })
     })
 
-    // Round lifecycle events
     socket.on("round-complete", roomData => {
       soundManager.play("reveal")
       console.log(
@@ -138,7 +126,6 @@ export function Game() {
       setVoteCounts([])
     })
 
-    // Cleanup
     return () => {
       socket.off("next-question")
       socket.off("game-finished")
@@ -155,7 +142,6 @@ export function Game() {
       setTimeLeft(prev => {
         if (prev === 1) {
           clearInterval(timer)
-          // Auto-submit if no answer selected
           if (selectedAnswer === null) {
             const statements = roomData?.questions?.[0]?.statements || []
             const randomIndex = Math.floor(Math.random() * statements.length)
@@ -164,7 +150,7 @@ export function Game() {
               "⏰ Time's up! Auto-submitting random option:",
               randomOption
             )
-            handleAnswer(randomOption, randomIndex) // Submit random answer
+            handleAnswer(randomOption, randomIndex)
           }
           setShowAnswer(true)
         }
@@ -178,7 +164,7 @@ export function Game() {
   const handleAnswer = (option, answerIndex) => {
     if (selectedAnswer !== null) {
       console.log("Already answered, ignoring")
-      return // Prevent multiple answers
+      return
     }
 
     console.log("=== ANSWER SUBMITTED ===")
@@ -190,7 +176,6 @@ export function Game() {
       roomData?.questions?.[0]?.trueStatementIndex
     )
 
-    // Play sound based on correctness
     const isCorrect =
       answerIndex === roomData?.questions?.[0]?.trueStatementIndex
     soundManager.play(isCorrect ? "correct" : "incorrect")
@@ -198,7 +183,6 @@ export function Game() {
     setSelectedAnswer(answerIndex)
     setShowAnswer(true)
 
-    // Emit answer to server with the answer index
     socket.emit("submit-answer", {
       code: roomCode,
       answerIndex: answerIndex
@@ -240,10 +224,8 @@ export function Game() {
     )
   }
 
-  // Create answer options using all statements from the grid (consistent order)
   const generateAnswers = () => {
     if (!roomData?.questions || !roomData.questions[0]?.statements) return []
-    // Keep original order so every client sees the same layout
     return [...roomData.questions[0].statements]
   }
 
@@ -358,4 +340,3 @@ export function Game() {
     </div>
   )
 }
-

@@ -19,39 +19,40 @@ const Lobby = () => {
       const cached = localStorage.getItem("cached_grids")
       const grids = cached ? JSON.parse(cached) : []
       return grids.length > 0 ? grids[0] : null
-    } catch { return null }
+    } catch {
+      return null
+    }
   })
-  // Load cached grids instantly
   const [userGrids, setUserGrids] = useState(() => {
     try {
       const cached = localStorage.getItem("cached_grids")
       return cached ? JSON.parse(cached) : []
-    } catch { return [] }
+    } catch {
+      return []
+    }
   })
   const [roomData, setRoomData] = useState(null)
   const [error, setError] = useState("")
   const hasEmittedGridSelection = useRef(false)
   const [loadingGrids, setLoadingGrids] = useState(true)
 
-  // Fetch user's bluff grids
   useEffect(() => {
     const fetchUserGrids = async () => {
       if (!user?.uid) return
 
-      // If cached grids exist, skip loading spinner
       const hasCached = userGrids.length > 0
       if (!hasCached) setLoadingGrids(true)
-      
+
       try {
         const response = await axiosInstance.get("/grids")
         setUserGrids(response.data)
-        try { localStorage.setItem("cached_grids", JSON.stringify(response.data)) } catch {}
+        try {
+          localStorage.setItem("cached_grids", JSON.stringify(response.data))
+        } catch {}
 
-        // Set the first grid as default if available
         if (response.data.length > 0 && !selectedGrid) {
           const firstGrid = response.data[0]
           setSelectedGrid(firstGrid)
-          // Note: We'll emit select-grid after joining the room
         }
       } catch (err) {
         console.error("Failed to fetch grids:", err)
@@ -88,33 +89,27 @@ const Lobby = () => {
       })
     }
 
-    // Join room initially and on reconnection
     joinRoom()
     socket.on("connect", joinRoom)
 
-    // Listen for room updates
     socket.on("room-update", roomData => {
       console.log("Room update received:", roomData.players.length, "players")
       setPlayers(roomData.players)
       setRoomData(roomData)
     })
 
-    // Listen for game started
     socket.on("game-started", roomData => {
       console.log("Game started!", roomData)
-      // Navigate to game page with room data
       navigate(`/game?code=${code}`, {
         state: { roomData, isHost }
       })
     })
 
-    // Listen for errors
     socket.on("error", errorData => {
       setError(errorData.message)
-      setTimeout(() => setError(""), 5000) // Clear error after 5 seconds
+      setTimeout(() => setError(""), 5000)
     })
 
-    // Cleanup on unmount
     return () => {
       console.log("Cleaning up socket listeners")
       socket.off("connect", joinRoom)
@@ -125,7 +120,6 @@ const Lobby = () => {
     }
   }, [code, isHost, user, navigate])
 
-  // Separate useEffect for handling grid selection after joining
   useEffect(() => {
     if (!roomData || !selectedGrid || hasEmittedGridSelection.current) {
       return
@@ -174,16 +168,13 @@ const Lobby = () => {
     const randomIndex = Math.floor(Math.random() * userGrids.length)
     const randomGrid = userGrids[randomIndex]
     setSelectedGrid(randomGrid)
-    // Emit grid selection to server
     socket.emit("select-grid", { code, gridId: randomGrid._id })
     hasEmittedGridSelection.current = true
   }
 
-  // Check if all players are ready
   const allPlayersReady =
     players.length > 0 && players.every(player => player.ready)
 
-  // Ensure socket is connected before trying to access socket.id
   const isCurrentPlayer = playerId => {
     return socket.connected && playerId === socket.id
   }
@@ -256,7 +247,6 @@ const Lobby = () => {
 
               <div className="player-actions">
                 {isCurrentPlayer(player.id) ? (
-                  // Current player - show ready toggle button
                   <button
                     className={`btn ${
                       player.ready ? "btn-success" : "btn-warning"
@@ -276,7 +266,6 @@ const Lobby = () => {
                     )}
                   </button>
                 ) : (
-                  // Other players - show status
                   <div className="player-status">
                     {player.ready ? (
                       <>
@@ -322,7 +311,6 @@ const Lobby = () => {
                 onChange={e => {
                   const grid = userGrids.find(g => g._id === e.target.value)
                   setSelectedGrid(grid)
-                  // Emit grid selection to server
                   socket.emit("select-grid", { code, gridId: grid._id })
                   hasEmittedGridSelection.current = true
                 }}
@@ -389,8 +377,8 @@ const Lobby = () => {
                 {!selectedGrid
                   ? "Select a grid first"
                   : allPlayersReady
-                  ? "Start Game"
-                  : "Waiting for players to be ready"}
+                    ? "Start Game"
+                    : "Waiting for players to be ready"}
               </button>
             )}
           </>
@@ -401,3 +389,4 @@ const Lobby = () => {
 }
 
 export default Lobby
+

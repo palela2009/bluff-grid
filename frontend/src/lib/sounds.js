@@ -1,5 +1,3 @@
-// Sound Effects Manager with Generated Sounds
-
 class SoundManager {
   constructor() {
     this.audioContext = null
@@ -13,203 +11,192 @@ class SoundManager {
     return this.audioContext
   }
 
-  // Click sound - short beep
   playClick() {
     if (!this.enabled) return
     const ctx = this.getAudioContext()
     const oscillator = ctx.createOscillator()
     const gainNode = ctx.createGain()
-    
+
     oscillator.connect(gainNode)
     gainNode.connect(ctx.destination)
-    
+
     oscillator.frequency.value = 800
     oscillator.type = 'sine'
-    
+
     gainNode.gain.setValueAtTime(0.1, ctx.currentTime)
     gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1)
-    
+
     oscillator.start(ctx.currentTime)
     oscillator.stop(ctx.currentTime + 0.1)
   }
 
-  // Hover sound - subtle high pitch
   playHover() {
     if (!this.enabled) return
     const ctx = this.getAudioContext()
     const oscillator = ctx.createOscillator()
     const gainNode = ctx.createGain()
-    
+
     oscillator.connect(gainNode)
     gainNode.connect(ctx.destination)
-    
+
     oscillator.frequency.value = 1200
     oscillator.type = 'sine'
-    
+
     gainNode.gain.setValueAtTime(0.05, ctx.currentTime)
     gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05)
-    
+
     oscillator.start(ctx.currentTime)
     oscillator.stop(ctx.currentTime + 0.05)
   }
 
-  // Correct answer - ascending happy sound
   playCorrect() {
     if (!this.enabled) return
     const ctx = this.getAudioContext()
     const oscillator = ctx.createOscillator()
     const gainNode = ctx.createGain()
-    
+
     oscillator.connect(gainNode)
     gainNode.connect(ctx.destination)
-    
+
     oscillator.type = 'sine'
-    oscillator.frequency.setValueAtTime(523, ctx.currentTime) // C5
-    oscillator.frequency.setValueAtTime(659, ctx.currentTime + 0.1) // E5
-    oscillator.frequency.setValueAtTime(784, ctx.currentTime + 0.2) // G5
-    
+    oscillator.frequency.setValueAtTime(523, ctx.currentTime)
+    oscillator.frequency.setValueAtTime(659, ctx.currentTime + 0.1)
+    oscillator.frequency.setValueAtTime(784, ctx.currentTime + 0.2)
+
     gainNode.gain.setValueAtTime(0.2, ctx.currentTime)
     gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4)
-    
+
     oscillator.start(ctx.currentTime)
     oscillator.stop(ctx.currentTime + 0.4)
   }
 
-  // Incorrect answer - descending sound
   playIncorrect() {
     if (!this.enabled) return
     const ctx = this.getAudioContext()
     const oscillator = ctx.createOscillator()
     const gainNode = ctx.createGain()
-    
+
     oscillator.connect(gainNode)
     gainNode.connect(ctx.destination)
-    
+
     oscillator.type = 'sawtooth'
     oscillator.frequency.setValueAtTime(400, ctx.currentTime)
     oscillator.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.3)
-    
+
     gainNode.gain.setValueAtTime(0.15, ctx.currentTime)
     gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3)
-    
+
     oscillator.start(ctx.currentTime)
     oscillator.stop(ctx.currentTime + 0.3)
   }
 
-  // Victory sound - celebratory fanfare
   playVictory() {
     if (!this.enabled) return
     const ctx = this.getAudioContext()
-    
-    const notes = [523, 659, 784, 1047] // C5, E5, G5, C6
+
+    const notes = [523, 659, 784, 1047]
     notes.forEach((freq, i) => {
       const oscillator = ctx.createOscillator()
       const gainNode = ctx.createGain()
-      
+
       oscillator.connect(gainNode)
       gainNode.connect(ctx.destination)
-      
+
       oscillator.frequency.value = freq
       oscillator.type = 'sine'
-      
+
       const startTime = ctx.currentTime + (i * 0.15)
       gainNode.gain.setValueAtTime(0.2, startTime)
       gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.3)
-      
+
       oscillator.start(startTime)
       oscillator.stop(startTime + 0.3)
     })
   }
 
-  // Join sound - rising tone
   playJoin() {
     if (!this.enabled) return
     const ctx = this.getAudioContext()
     const oscillator = ctx.createOscillator()
     const gainNode = ctx.createGain()
-    
+
     oscillator.connect(gainNode)
     gainNode.connect(ctx.destination)
-    
+
     oscillator.frequency.setValueAtTime(400, ctx.currentTime)
     oscillator.frequency.exponentialRampToValueAtTime(600, ctx.currentTime + 0.2)
     oscillator.type = 'sine'
-    
+
     gainNode.gain.setValueAtTime(0.15, ctx.currentTime)
     gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2)
-    
+
     oscillator.start(ctx.currentTime)
     oscillator.stop(ctx.currentTime + 0.2)
   }
 
-  // Leave sound - falling tone
   playLeave() {
     if (!this.enabled) return
     const ctx = this.getAudioContext()
     const oscillator = ctx.createOscillator()
     const gainNode = ctx.createGain()
-    
+
     oscillator.connect(gainNode)
     gainNode.connect(ctx.destination)
-    
+
     oscillator.frequency.setValueAtTime(600, ctx.currentTime)
     oscillator.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.2)
     oscillator.type = 'sine'
-    
+
     gainNode.gain.setValueAtTime(0.15, ctx.currentTime)
     gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2)
-    
+
     oscillator.start(ctx.currentTime)
     oscillator.stop(ctx.currentTime + 0.2)
   }
 
-  // Countdown tick
   playCountdown() {
     if (!this.enabled) return
     const ctx = this.getAudioContext()
     const oscillator = ctx.createOscillator()
     const gainNode = ctx.createGain()
-    
+
     oscillator.connect(gainNode)
     gainNode.connect(ctx.destination)
-    
+
     oscillator.frequency.value = 1000
     oscillator.type = 'square'
-    
+
     gainNode.gain.setValueAtTime(0.1, ctx.currentTime)
     gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1)
-    
+
     oscillator.start(ctx.currentTime)
     oscillator.stop(ctx.currentTime + 0.1)
   }
 
-  // Reveal sound - dramatic
   playReveal() {
     if (!this.enabled) return
     const ctx = this.getAudioContext()
     const oscillator = ctx.createOscillator()
     const gainNode = ctx.createGain()
-    
+
     oscillator.connect(gainNode)
     gainNode.connect(ctx.destination)
-    
+
     oscillator.frequency.setValueAtTime(200, ctx.currentTime)
     oscillator.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.3)
     oscillator.type = 'triangle'
-    
+
     gainNode.gain.setValueAtTime(0.2, ctx.currentTime)
     gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3)
-    
+
     oscillator.start(ctx.currentTime)
     oscillator.stop(ctx.currentTime + 0.3)
   }
 
-  // Notification - two tone
   playNotification() {
     if (!this.enabled) return
     const ctx = this.getAudioContext()
-    
-    // First tone
+
     const osc1 = ctx.createOscillator()
     const gain1 = ctx.createGain()
     osc1.connect(gain1)
@@ -220,8 +207,7 @@ class SoundManager {
     gain1.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1)
     osc1.start(ctx.currentTime)
     osc1.stop(ctx.currentTime + 0.1)
-    
-    // Second tone
+
     const osc2 = ctx.createOscillator()
     const gain2 = ctx.createGain()
     osc2.connect(gain2)
@@ -257,7 +243,7 @@ class SoundManager {
     this.enabled = !this.enabled
     localStorage.setItem('soundEnabled', this.enabled)
     if (this.enabled) {
-      this.playClick() // Test sound
+      this.playClick()
     }
     return this.enabled
   }
@@ -267,7 +253,6 @@ class SoundManager {
   }
 }
 
-// Create singleton instance
 const soundManager = new SoundManager()
 
 export default soundManager

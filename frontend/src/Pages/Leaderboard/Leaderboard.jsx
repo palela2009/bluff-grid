@@ -9,11 +9,9 @@ const Leaderboard = () => {
   const roomData = location.state?.roomData
   const players = Array.isArray(roomData?.players) ? [...roomData.players] : []
 
-  // compute initials helper
   const initialOf = name =>
     name && name.trim().length > 0 ? name.trim()[0].toUpperCase() : "?"
 
-  // sort by totalScore desc; fallback to 0
   players.sort((a, b) => (b.totalScore || 0) - (a.totalScore || 0))
 
   const topPlayers = players.slice(0, 3).map((p, idx) => ({

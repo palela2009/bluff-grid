@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { auth } from './firebase';
 
-// Use environment variable for API URL, fallback to localhost for development
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"
 
-// Debug logging - shows which backend URL is being used
 console.log('🔧 Environment check:')
 console.log('  VITE_API_URL from import.meta.env:', import.meta.env.VITE_API_URL)
 console.log('  Final API_URL:', API_URL)
@@ -16,7 +14,6 @@ const axiosInstance = axios.create({
   },
 });
 
-// Attach fresh Firebase ID token on every request
 axiosInstance.interceptors.request.use(async (config) => {
   const user = auth.currentUser;
   if (user) {
@@ -27,13 +24,11 @@ axiosInstance.interceptors.request.use(async (config) => {
         config.headers.Authorization = `Bearer ${token}`;
       }
     } catch (_) {
-      // ignore, request will proceed without token
     }
   }
   return config;
 });
 
-// Retry once on 401 after forcing a token refresh
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -49,7 +44,6 @@ axiosInstance.interceptors.response.use(
           originalRequest.headers.Authorization = `Bearer ${freshToken}`;
           return axiosInstance(originalRequest);
         } catch (_) {
-          // fall through to reject
         }
       }
     }

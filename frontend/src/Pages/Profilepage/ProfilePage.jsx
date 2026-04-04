@@ -9,7 +9,6 @@ const ProfilePage = () => {
   const navigate = useNavigate()
   const { user } = useContext(AuthContext)
 
-  // Load cached grids instantly from localStorage
   const [grids, setGrids] = useState(() => {
     try {
       const cached = localStorage.getItem("cached_grids")
@@ -29,7 +28,6 @@ const ProfilePage = () => {
       return
     }
 
-    // If we have cached grids, show them immediately (no loading spinner)
     const hasCached = grids.length > 0
     if (!hasCached) setLoading(true)
 
@@ -39,11 +37,9 @@ const ProfilePage = () => {
       console.log("✅ Grids fetched:", response.data)
       const freshGrids = response.data || []
       setGrids(freshGrids)
-      // Cache for next visit
       try { localStorage.setItem("cached_grids", JSON.stringify(freshGrids)) } catch {}
     } catch (error) {
       console.error("Error fetching grids:", error)
-      // Keep cached grids on error instead of clearing
       if (!hasCached) setGrids([])
     } finally {
       setLoading(false)

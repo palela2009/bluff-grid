@@ -23,7 +23,6 @@ export default function Layout() {
   const [isLoggingIn, setIsLoggingIn] = useState(false)
   const [loginError, setLoginError] = useState(null)
 
-  // Apply dark mode to document
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark-mode")
@@ -44,18 +43,16 @@ export default function Layout() {
   }
 
   const handleGoogleLogin = async () => {
-    if (isLoggingIn) return // Prevent double-clicks
+    if (isLoggingIn) return
     setIsLoggingIn(true)
     setLoginError(null)
     soundManager.play("click")
-    
+
     googleProvider.setCustomParameters({
       prompt: "select_account"
     })
-    
+
     try {
-      // Always use popup - it works on mobile browsers now
-      // signInWithRedirect has issues with Safari ITP and storage partitioning
       const result = await signInWithPopup(auth, googleProvider)
       if (result.user) {
         console.log("Login successful:", result.user.email)
@@ -68,13 +65,11 @@ export default function Layout() {
       }
     } catch (err) {
       console.error("Google login failed", err)
-      // Show user-friendly error message
       if (err.code === 'auth/popup-closed-by-user') {
         setLoginError("Login cancelled. Please try again.")
       } else if (err.code === 'auth/popup-blocked') {
         setLoginError("Popup blocked. Please allow popups for this site.")
       } else if (err.code === 'auth/cancelled-popup-request') {
-        // Another popup is already open, ignore
       } else {
         setLoginError("Login failed. Please try again.")
       }
@@ -84,16 +79,15 @@ export default function Layout() {
   }
 
   const handleFacebookLogin = async () => {
-    if (isLoggingIn) return // Prevent double-clicks
+    if (isLoggingIn) return
     setIsLoggingIn(true)
     setLoginError(null)
-    
+
     facebookProvider.setCustomParameters({
       auth_type: "reauthenticate"
     })
-    
+
     try {
-      // Always use popup - works on mobile and avoids storage partitioning issues
       const result = await signInWithPopup(auth, facebookProvider)
       if (result.user) {
         console.log("Facebook login successful:", result.user.email)
@@ -111,7 +105,6 @@ export default function Layout() {
       } else if (err.code === 'auth/popup-blocked') {
         setLoginError("Popup blocked. Please allow popups for this site.")
       } else if (err.code === 'auth/cancelled-popup-request') {
-        // Another popup is already open, ignore
       } else {
         setLoginError("Login failed. Please try again.")
       }
@@ -145,7 +138,7 @@ export default function Layout() {
             <img src="/logo.png" alt="BG" className="nav-logo" />
             <h1>Bluff Grid</h1>
           </Link>
-          
+
           <div className="nav-container">
             <button
               onClick={toggleSound}
@@ -161,7 +154,7 @@ export default function Layout() {
             >
               {darkMode ? "☀️" : "🌙"}
             </button>
-            
+
             <Link
               to="/"
               className="homebutton nav-link"
@@ -190,11 +183,11 @@ export default function Layout() {
             >
               About
             </Link>
-            
+
             {!user ? (
               <>
-                <button 
-                  onClick={handleGoogleLogin} 
+                <button
+                  onClick={handleGoogleLogin}
                   disabled={isLoggingIn}
                   className="login-button"
                 >
