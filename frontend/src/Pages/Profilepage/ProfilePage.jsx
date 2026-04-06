@@ -13,7 +13,9 @@ const ProfilePage = () => {
     try {
       const cached = localStorage.getItem("cached_grids")
       return cached ? JSON.parse(cached) : []
-    } catch { return [] }
+    } catch {
+      return []
+    }
   })
   const [loading, setLoading] = useState(true)
 
@@ -37,7 +39,9 @@ const ProfilePage = () => {
       console.log("✅ Grids fetched:", response.data)
       const freshGrids = response.data || []
       setGrids(freshGrids)
-      try { localStorage.setItem("cached_grids", JSON.stringify(freshGrids)) } catch {}
+      try {
+        localStorage.setItem("cached_grids", JSON.stringify(freshGrids))
+      } catch {}
     } catch (error) {
       console.error("Error fetching grids:", error)
       if (!hasCached) setGrids([])
@@ -55,7 +59,9 @@ const ProfilePage = () => {
       await axiosInstance.delete(`/grids/${gridId}`)
       const updated = grids.filter(g => g._id !== gridId)
       setGrids(updated)
-      try { localStorage.setItem("cached_grids", JSON.stringify(updated)) } catch {}
+      try {
+        localStorage.setItem("cached_grids", JSON.stringify(updated))
+      } catch {}
     } catch (error) {
       console.error("Error deleting grid:", error)
       alert("Failed to delete grid. Please try again.")
@@ -89,7 +95,7 @@ const ProfilePage = () => {
       <div className="profile-glow profile-glow-1" />
       <div className="profile-glow profile-glow-2" />
 
-      {/* Header card */}
+      {}
       <section className="profile-header-card">
         <div className="profile-header-inner">
           <div className="profile-user">
@@ -116,11 +122,13 @@ const ProfilePage = () => {
         </div>
       </section>
 
-      {/* Grids */}
+      {}
       <section className="profile-grids">
         <div className="grids-top-row">
           <div>
-            <h2><Sparkles size={22} /> My Bluff Grids</h2>
+            <h2>
+              <Sparkles size={22} /> My Bluff Grids
+            </h2>
             <p>Create and manage your custom grids</p>
           </div>
           <button className="btn-new-grid" onClick={() => navigate("/create")}>
@@ -180,7 +188,10 @@ const ProfilePage = () => {
             <Grid3x3 size={56} />
             <h3>No Grids Yet</h3>
             <p>Create your first bluff grid to start playing!</p>
-            <button className="btn-new-grid" onClick={() => navigate("/create")}>
+            <button
+              className="btn-new-grid"
+              onClick={() => navigate("/create")}
+            >
               <Plus size={18} /> Create Your First Grid
             </button>
           </div>
@@ -191,3 +202,4 @@ const ProfilePage = () => {
 }
 
 export default ProfilePage
+

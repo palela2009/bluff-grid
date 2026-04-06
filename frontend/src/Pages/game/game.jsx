@@ -4,7 +4,15 @@ import "./game.css"
 import { QuestionCard } from "./questionCard"
 import { socket } from "../../socket"
 import { AuthContext } from "../../lib/AuthContext"
-import { Trophy, Clock, Users, Zap, SkipForward, ArrowRight, Home } from "lucide-react"
+import {
+  Trophy,
+  Clock,
+  Users,
+  Zap,
+  SkipForward,
+  ArrowRight,
+  Home
+} from "lucide-react"
 import soundManager from "../../lib/sounds"
 
 export function Game() {
@@ -73,7 +81,7 @@ export function Game() {
     })
 
     hasJoinedRoom.current = true
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [])
 
   useEffect(() => {
@@ -203,7 +211,10 @@ export function Game() {
             </div>
             <h1>Game Over!</h1>
             <p>Thanks for playing Bluff Grid!</p>
-            <button className="game-btn game-btn-primary" onClick={handleBackToLobby}>
+            <button
+              className="game-btn game-btn-primary"
+              onClick={handleBackToLobby}
+            >
               <Home size={20} />
               Back to Home
             </button>
@@ -233,12 +244,13 @@ export function Game() {
 
   return (
     <div className="game-page">
-      {/* Top Bar */}
+      {}
       <div className="game-top-bar">
         <div className="top-bar-left">
           <div className="round-badge">
             <Zap size={16} />
-            Round {(roomData?.roundIndex || 0) + 1}/{roomData?.players?.length || 1}
+            Round {(roomData?.roundIndex || 0) + 1}/
+            {roomData?.players?.length || 1}
           </div>
           {roomData?.selectedGridTitle && (
             <div className="grid-badge">
@@ -250,7 +262,9 @@ export function Game() {
           )}
         </div>
         <div className="top-bar-right">
-          <div className={`timer-display ${timeLeft <= 10 ? "timer-danger" : timeLeft <= 20 ? "timer-warning" : ""}`}>
+          <div
+            className={`timer-display ${timeLeft <= 10 ? "timer-danger" : timeLeft <= 20 ? "timer-warning" : ""}`}
+          >
             <Clock size={20} />
             <span className="timer-value">{timeLeft}</span>
             <span className="timer-unit">s</span>
@@ -258,7 +272,7 @@ export function Game() {
         </div>
       </div>
 
-      {/* Players Strip */}
+      {}
       <div className="players-strip">
         <Users size={16} />
         <div className="players-chips">
@@ -274,7 +288,7 @@ export function Game() {
         </div>
       </div>
 
-      {/* Question */}
+      {}
       <div className="question-section">
         <h2 className="question-text">
           {roomData?.questions?.[0]?.text || "Which statement is TRUE?"}
@@ -284,7 +298,7 @@ export function Game() {
         )}
       </div>
 
-      {/* Answer Cards */}
+      {}
       <QuestionCard
         question="Which statement is TRUE about you?"
         answers={answerOptions}
@@ -299,7 +313,7 @@ export function Game() {
         voteCounts={voteCounts}
       />
 
-      {/* Host Controls */}
+      {}
       <div className="host-controls">
         {isHost && !showAnswer && (
           <button
@@ -340,3 +354,4 @@ export function Game() {
     </div>
   )
 }
+

@@ -1,7 +1,4 @@
-/* ============================================
-   BLUFF GRID - CREATE GRID PAGE
-   Premium Design
-   ============================================ */
+
 
 .create-grid-main {
   max-width: 760px;
@@ -10,7 +7,7 @@
   min-height: calc(100vh - 160px);
 }
 
-/* Back link */
+
 .create-grid-header {
   margin-bottom: 28px;
   animation: cgFadeDown 0.4s ease;
@@ -37,7 +34,7 @@
   transform: translateX(-3px);
 }
 
-/* Main content card */
+
 .create-grid-content {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
@@ -46,7 +43,7 @@
   animation: cgSlideUp 0.5s ease;
 }
 
-/* Title section */
+
 .create-grid-title-section {
   text-align: center;
   margin-bottom: 40px;
@@ -68,7 +65,7 @@
   line-height: 1.6;
 }
 
-/* Grid title input */
+
 .grid-title-section {
   margin-bottom: 36px;
 }
@@ -108,7 +105,7 @@
   background: rgba(255,255,255,0.07);
 }
 
-/* Statements section */
+
 .statements-section {
   margin-bottom: 32px;
 }
@@ -131,7 +128,7 @@
   gap: 14px;
 }
 
-/* Statement item */
+
 .statement-item {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
@@ -169,7 +166,7 @@
   background: rgba(255,255,255,0.06);
 }
 
-/* Mark truth button */
+
 .mark-truth-btn {
   display: inline-flex;
   align-items: center;
@@ -198,7 +195,7 @@
   box-shadow: 0 4px 16px rgba(16,185,129,0.3);
 }
 
-/* Error messages */
+
 .error-message {
   display: flex;
   align-items: center;
@@ -213,7 +210,7 @@
   margin-top: 12px;
 }
 
-/* Action buttons */
+
 .create-grid-actions {
   display: flex;
   gap: 14px;
@@ -257,7 +254,7 @@
   transform: none !important;
 }
 
-/* Animations */
+
 @keyframes cgSlideUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -267,7 +264,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .create-grid-main { padding: 24px 16px 60px; }
   .create-grid-content { padding: 28px 20px; border-radius: 20px; }

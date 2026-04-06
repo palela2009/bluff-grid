@@ -1,9 +1,6 @@
-/* ============================================
-   BLUFF GRID - LAYOUT
-   Modern Glass Navigation
-   ============================================ */
 
-/* CSS Variables for Dark Mode */
+
+
 :root {
   --bg-dark: #0a0a0f;
   --glass-bg: rgba(255, 255, 255, 0.05);
@@ -12,7 +9,7 @@
   --text-secondary: rgba(255, 255, 255, 0.7);
 }
 
-/* Main container */
+
 .app-container {
   display: flex;
   flex-direction: column;
@@ -24,7 +21,7 @@ main {
   flex: 1;
 }
 
-/* Modern Glass Header */
+
 header {
   position: sticky;
   top: 0;
@@ -50,7 +47,7 @@ header:hover {
   gap: 24px;
 }
 
-/* Brand link */
+
 .brand-link {
   display: flex;
   align-items: center;
@@ -71,7 +68,7 @@ header:hover {
   transform: scale(1.08) rotate(-4deg);
 }
 
-/* Logo */
+
 header h1 {
   font-size: 28px;
   font-weight: 900;
@@ -89,7 +86,7 @@ header h1:hover {
   transform: scale(1.02);
 }
 
-/* Navigation Container */
+
 .nav-container {
   display: flex;
   align-items: center;
@@ -97,7 +94,7 @@ header h1:hover {
   flex-wrap: wrap;
 }
 
-/* Navigation Links */
+
 .nav-link {
   padding: 10px 20px;
   border-radius: 12px;
@@ -172,7 +169,7 @@ header h1:hover {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Icon Buttons */
+
 .icon-button {
   width: 44px;
   height: 44px;
@@ -218,7 +215,7 @@ header h1:hover {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Login Button */
+
 .login-button {
   background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
   color: white;
@@ -246,7 +243,7 @@ header h1:hover {
   cursor: wait;
 }
 
-/* Logout Button */
+
 button {
   background: rgba(255, 255, 255, 0.1);
   color: white;
@@ -264,7 +261,7 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* User Profile */
+
 .user-section {
   display: flex;
   align-items: center;
@@ -302,7 +299,7 @@ span {
   background-clip: unset;
 }
 
-/* Login Error */
+
 .login-error {
   color: #f87171;
   font-size: 12px;
@@ -312,7 +309,7 @@ span {
   border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
-/* Mobile Responsiveness */
+
 @media (max-width: 1024px) {
   header {
     padding: 14px 24px;
@@ -400,7 +397,7 @@ span {
   }
 }
 
-/* Touch device optimizations */
+
 @media (hover: none) and (pointer: coarse) {
   .nav-link,
   .icon-button,
@@ -428,7 +425,7 @@ span {
   }
 }
 
-/* Dark mode overrides - not needed since we are already dark */
+
 :root.dark-mode .app-container {
   background: #0a0a0f;
 }

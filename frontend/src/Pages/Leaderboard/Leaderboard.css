@@ -1,7 +1,4 @@
-/* ============================================
-   BLUFF GRID - LEADERBOARD PAGE
-   Modern Glass Design
-   ============================================ */
+
 
 .trophy-icon {
   display: flex;
@@ -35,7 +32,7 @@
   animation: fadeInDown 0.5s ease 0.1s both;
 }
 
-/* Top Players */
+
 .top-players-wrapper {
   display: flex;
   justify-content: center;
@@ -78,7 +75,7 @@
   box-shadow: 0 12px 40px rgba(245, 158, 11, 0.2);
 }
 
-/* Rank Badge */
+
 .rank-badge {
   position: absolute;
   top: -14px;
@@ -114,7 +111,7 @@
   flex-shrink: 0;
 }
 
-/* Avatar */
+
 .avatar {
   width: 80px;
   height: 80px;
@@ -160,7 +157,7 @@
   font-size: 20px;
 }
 
-/* Player Info */
+
 .name {
   font-size: 18px;
   font-weight: 700;
@@ -200,7 +197,7 @@
   display: inline-block;
 }
 
-/* Other Players Section */
+
 .other-players-section {
   max-width: 600px;
   margin: 0 auto 40px;
@@ -248,7 +245,7 @@
   font-size: 18px;
 }
 
-/* Footer Buttons */
+
 .footer-buttons {
   display: flex;
   justify-content: center;
@@ -280,7 +277,7 @@
   box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
 }
 
-/* Animations */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -314,7 +311,7 @@
   }
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .title {
     font-size: 32px;

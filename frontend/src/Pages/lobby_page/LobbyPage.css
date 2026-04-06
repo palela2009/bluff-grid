@@ -1,7 +1,4 @@
-/* ============================================
-   BLUFF GRID - LOBBY PAGE
-   Modern Glass Design
-   ============================================ */
+
 
 .card {
   display: grid;
@@ -13,7 +10,7 @@
   min-height: calc(100vh - 160px);
 }
 
-/* Error Message */
+
 .error-message {
   grid-column: 1 / -1;
   display: flex;
@@ -28,7 +25,7 @@
   animation: fadeInDown 0.3s ease;
 }
 
-/* Lobby Details Section */
+
 .lobby-details {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
@@ -55,7 +52,7 @@
   margin-bottom: 24px;
 }
 
-/* Back Button */
+
 .lobby-details .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -77,7 +74,7 @@
   transform: translateY(-2px);
 }
 
-/* Game Code Container */
+
 .game-code-container {
   background: rgba(99, 102, 241, 0.1);
   border: 1px solid rgba(99, 102, 241, 0.2);
@@ -126,7 +123,7 @@
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
 }
 
-/* Players Section */
+
 .players-section {
   margin-top: 24px;
 }
@@ -245,7 +242,7 @@
   color: #f59e0b;
 }
 
-/* Game Options Section */
+
 .game-options {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
@@ -306,7 +303,7 @@
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
 }
 
-/* Select Grid Container */
+
 .select-grid-container {
   margin-bottom: 20px;
 }
@@ -353,7 +350,7 @@
   padding: 12px;
 }
 
-/* Selected Grid Info */
+
 .selected-grid-info {
   margin: 20px 0;
 }
@@ -446,7 +443,7 @@
   letter-spacing: 0.5px;
 }
 
-/* Buttons */
+
 .randomize-button,
 .start-game-button {
   width: 100%;
@@ -501,7 +498,7 @@
   box-shadow: none !important;
 }
 
-/* Animations */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -533,7 +530,7 @@
   }
 }
 
-/* Responsive Design */
+
 @media (max-width: 968px) {
   .card {
     grid-template-columns: 1fr;

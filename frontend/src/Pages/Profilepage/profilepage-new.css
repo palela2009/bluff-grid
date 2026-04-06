@@ -26,7 +26,7 @@ body {
   padding: 0;
 }
 
-/* Hero Section */
+
 .profile-hero {
   background: var(--purple-gradient);
   padding: 60px 40px;
@@ -119,7 +119,7 @@ body {
   letter-spacing: 1px;
 }
 
-/* Main Content */
+
 .profile-main {
   max-width: 1200px;
   margin: 0 auto;
@@ -164,7 +164,7 @@ body {
   font-size: 15px;
 }
 
-/* Buttons */
+
 .btn {
   padding: 12px 24px;
   border-radius: 10px;
@@ -197,7 +197,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* Grids Grid */
+
 .grids-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -340,7 +340,7 @@ body {
   box-shadow: 0 4px 15px rgba(67, 233, 123, 0.3);
 }
 
-/* Loading & Empty States */
+
 .loading-state {
   text-align: center;
   padding: 80px 20px;
@@ -415,7 +415,7 @@ body {
   color: #718096;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .profile-hero {
     padding: 40px 20px;
@@ -548,7 +548,7 @@ body {
   }
 }
 
-/* Touch device optimizations */
+
 @media (hover: none) and (pointer: coarse) {
   .btn {
     -webkit-tap-highlight-color: transparent;

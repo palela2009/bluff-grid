@@ -42,15 +42,15 @@ export function QuestionCard({
               onClick={() => handleClick(option, index)}
               disabled={showAnswer}
             >
-              {/* Answer number */}
+              {}
               <div className="answer-number">{index + 1}</div>
 
-              {/* Answer text */}
+              {}
               <div className="answer-content">
                 <p className="answer-text">{option}</p>
               </div>
 
-              {/* Result indicator */}
+              {}
               {showAnswer && (
                 <div className="answer-result">
                   {isCorrect ? (
@@ -71,7 +71,7 @@ export function QuestionCard({
                 </div>
               )}
 
-              {/* Vote bar */}
+              {}
               {showAnswer && totalVotes > 0 && (
                 <div className="vote-bar-wrapper">
                   <div className="vote-bar">

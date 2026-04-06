@@ -1,4 +1,4 @@
-/* Modern Lobby Page Design */
+
 .card {
   display: flex;
   min-height: 100vh;
@@ -8,7 +8,7 @@
   flex-wrap: wrap;
 }
 
-/* Error Message */
+
 .error-message {
   position: fixed;
   top: 80px;
@@ -38,7 +38,7 @@
   }
 }
 
-/* Left Panel - Lobby Details */
+
 .lobby-details {
   flex: 1;
   min-width: 350px;
@@ -68,7 +68,7 @@
   font-weight: 500;
 }
 
-/* Game Code Container */
+
 .game-code-container {
   background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
   border: 3px solid #10b981;
@@ -115,7 +115,7 @@
   box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4) !important;
 }
 
-/* Players Section */
+
 .players-section {
   background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
   border: 2px solid #667eea;
@@ -206,7 +206,7 @@
   color: #64748b;
 }
 
-/* Right Panel - Game Options */
+
 .game-options {
   flex: 1;
   min-width: 400px;
@@ -236,7 +236,7 @@
   font-weight: 500;
 }
 
-/* Grid Selection */
+
 .select-grid-container {
   display: flex;
   flex-direction: column;
@@ -271,7 +271,7 @@
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-/* Selected Grid Info */
+
 .selected-grid-info {
   background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
   border: 2px solid #667eea;
@@ -385,7 +385,7 @@
   box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
 }
 
-/* Buttons */
+
 .randomize-button {
   background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
   color: #1e293b !important;
@@ -436,7 +436,7 @@
   box-shadow: none !important;
 }
 
-/* Loading & No Grids */
+
 .loading-grids,
 .no-grids {
   text-align: center;
@@ -450,7 +450,7 @@
   margin-bottom: 20px;
 }
 
-/* Buttons */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -489,7 +489,7 @@
   box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
 }
 
-/* Mobile Responsiveness */
+
 @media (max-width: 1024px) {
   .card {
     flex-direction: column;

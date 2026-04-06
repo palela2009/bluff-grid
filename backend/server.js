@@ -18,15 +18,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const httpServer = createServer(app);
 
-// Initialize Socket.IO with CORS
-// Allow both development and production origins
+
+
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   "https://bluffgrid.com",
   "https://www.bluffgrid.com",
-  "https://bluff-grid.netlify.app", // Add your actual Netlify URL here
-  /\.netlify\.app$/ // Allow all Netlify preview deploys
+  "https://bluff-grid.netlify.app", 
+  /\.netlify\.app$/ 
 ];
 
 const io = new Server(httpServer, {
@@ -38,16 +38,16 @@ const io = new Server(httpServer, {
   transports: ['websocket', 'polling']
 });
 
-// Store rooms data
+
 const rooms = {};
-// Track socket to room mapping
+
 const socketRooms = new Map();
 
 io.on("connection", (socket) => {
   console.log("Client connected:", socket.id);
 
   socket.on("join-room", ({ code, player }) => {
-    // Leave previous room if any
+    
     const previousRoom = socketRooms.get(socket.id);
     if (previousRoom) {
       socket.leave(previousRoom);
@@ -62,17 +62,17 @@ io.on("connection", (socket) => {
       socketRooms.delete(socket.id);
     }
 
-    // Join new room
+    
     socket.join(code);
     socketRooms.set(socket.id, code);
     
-    // Initialize room if it doesn't exist
+    
     if (!rooms[code]) {
       console.log(`📦 Creating NEW room: ${code}`);
       rooms[code] = {
         code,
         players: [],
-        phase: "lobby", // lobby, playing, finished
+        phase: "lobby", 
         selectedGridId: null,
         selectedGridOwner: null,
         selectedGridTitle: null,
@@ -86,23 +86,23 @@ io.on("connection", (socket) => {
       console.log(`♻️ Room ${code} already exists with phase: ${rooms[code].phase}`);
     }
 
-    // Find existing player by firebaseId (not socket.id, as it changes on reconnect)
+    
     const existingPlayerByFirebaseId = rooms[code].players.find(p => p.firebaseId === player.firebaseId);
     
-    // Remove any existing entries for this player (by socket.id) 
+    
     rooms[code].players = rooms[code].players.filter(p => p.id !== socket.id && p.firebaseId !== player.firebaseId);
 
-    // Add player to room, preserving answers, scores, and grid selection if player is rejoining
+    
     const playerData = {
-      id: socket.id, // New socket ID
+      id: socket.id, 
       ...player,
-      ready: rooms[code].phase === "playing" ? true : false, // Auto-ready if game is playing
+      ready: rooms[code].phase === "playing" ? true : false, 
       joinedAt: existingPlayerByFirebaseId?.joinedAt || Date.now(),
-      // Preserve game data if player is rejoining during an active game
+      
       answers: existingPlayerByFirebaseId?.answers || [],
       scores: existingPlayerByFirebaseId?.scores || [],
       totalScore: existingPlayerByFirebaseId?.totalScore || 0,
-      selectedGridId: existingPlayerByFirebaseId?.selectedGridId || player.selectedGridId // Preserve grid selection!
+      selectedGridId: existingPlayerByFirebaseId?.selectedGridId || player.selectedGridId 
     };
     
     if (existingPlayerByFirebaseId?.selectedGridId) {
@@ -115,15 +115,15 @@ io.on("connection", (socket) => {
     
     rooms[code].players.push(playerData);
     
-    // Update roundOrder whenever a player rejoins during an active game
+    
     if (rooms[code].phase === "playing") {
       console.log(`🎮 Room is in PLAYING phase, roundOrder already set with firebaseIds`);
-      // No need to rebuild - roundOrder uses firebaseIds which don't change
+      
     } else {
       console.log(`📋 Room is in ${rooms[code].phase} phase, NOT rebuilding roundOrder`);
     }
 
-    // Log room state
+    
     console.log(`Room ${code} has ${rooms[code].players.length} players:`, 
       rooms[code].players.map(p => ({ 
         id: p.id, 
@@ -134,7 +134,7 @@ io.on("connection", (socket) => {
         scores: p.scores?.length 
       })));
 
-    // Emit room update to all clients in the room
+    
     io.to(code).emit("room-update", rooms[code]);
   });
 
@@ -174,7 +174,7 @@ io.on("connection", (socket) => {
       return;
     }
 
-    // Check if all players are ready AND have selected a grid
+    
     const allReady = room.players.every(p => p.ready);
     if (!allReady) {
       socket.emit("error", { message: "All players must be ready to start the game" });
@@ -188,9 +188,9 @@ io.on("connection", (socket) => {
     }
 
     try {
-      // Start the game (initialize rounds)
+      
       room.phase = "playing";
-      // Store firebaseIds in roundOrder (they persist across reconnects, unlike socket IDs)
+      
       const sortedPlayers = [...room.players].sort((a, b) => a.joinedAt - b.joinedAt);
       room.roundOrder = sortedPlayers.map(p => p.firebaseId);
       room.roundIndex = 0;
@@ -202,7 +202,7 @@ io.on("connection", (socket) => {
         return `${i}: ${p?.name} (${firebaseId?.substring(0, 8)})`;
       }));
       
-      // Get the first player's grid for round 1
+      
       const firstPlayerFirebaseId = room.roundOrder[0];
       const firstPlayer = room.players.find(p => p.firebaseId === firstPlayerFirebaseId);
       
@@ -222,7 +222,7 @@ io.on("connection", (socket) => {
 
       console.log("✅ Found grid:", { title: selectedGrid.title, statements: selectedGrid.statements.length });
 
-      // Set up the first round with the first player's grid
+      
       room.selectedGridId = firstPlayer.selectedGridId;
       room.selectedGridOwner = firstPlayer.firebaseId;
       room.selectedGridTitle = selectedGrid.title;
@@ -233,14 +233,14 @@ io.on("connection", (socket) => {
         return `${i}: ${p?.name} (${id})`;
       }));
       
-      // Set up the single question with all statements and the true statement index
+      
       room.questions = [{
         text: `Which statement is TRUE about ${firstPlayer.name}?`,
         statements: selectedGrid.statements,
         trueStatementIndex: selectedGrid.trueStatementIndex || 0
       }];
       
-      room.currentPlayerName = firstPlayer.name; // Store whose grid this is
+      room.currentPlayerName = firstPlayer.name; 
       
       room.currentQuestionIndex = 0;
       room.gameStartTime = Date.now();
@@ -276,10 +276,10 @@ io.on("connection", (socket) => {
       return;
     }
 
-    // Use roundIndex instead of currentQuestionIndex for tracking answers per round
+    
     const roundIdx = room.roundIndex || 0;
     
-    // Prevent duplicate submissions
+    
     if (!player.answers) player.answers = [];
     if (player.answers[roundIdx] !== undefined) {
       console.log(`Player ${player.name} already submitted an answer for round ${roundIdx + 1}`);
@@ -288,20 +288,20 @@ io.on("connection", (socket) => {
     
     player.answers[roundIdx] = answerIndex;
 
-    // Calculate score for this question
+    
     if (!player.scores) player.scores = [];
     
-    // Get the current question's true statement index
+    
     const currentQuestion = room.questions[room.currentQuestionIndex];
     const trueStatementIndex = currentQuestion.trueStatementIndex || 0;
     
-    // Award 1 point if correct, 0 if incorrect
+    
     const score = (answerIndex === trueStatementIndex) ? 1 : 0;
     player.scores[roundIdx] = score;
     
     console.log(`Player ${player.name} answered ${answerIndex === trueStatementIndex ? 'correctly' : 'incorrectly'} in round ${roundIdx + 1} (selected ${answerIndex}, correct is ${trueStatementIndex}): ${score} point(s)`);
 
-    // Calculate vote counts for this round
+    
     const voteCounts = Array(currentQuestion.statements.length).fill(0);
     room.players.forEach(p => {
       const answer = p.answers?.[roundIdx];
@@ -312,23 +312,23 @@ io.on("connection", (socket) => {
     
     console.log(`Vote counts after ${player.name}'s answer:`, voteCounts);
 
-    // Check if all players have answered
+    
     const allAnswered = room.players.every(p => p.answers && p.answers[roundIdx] !== undefined);
     
     if (allAnswered) {
-      // Single-question round complete
+      
       console.log("All players answered. Final vote counts:", voteCounts);
       const roomWithVotes = { ...room, voteCounts };
       io.to(code).emit("round-complete", roomWithVotes);
     } else {
-      // Send partial vote counts to all players
+      
       console.log(`${room.players.filter(p => p.answers?.[roundIdx] !== undefined).length}/${room.players.length} players answered`);
       const roomWithVotes = { ...room, voteCounts };
       io.to(code).emit("answer-submitted", roomWithVotes);
     }
   });
 
-  // Admin can force skip to show results (even if not all players answered)
+  
   socket.on("force-show-results", ({ code }) => {
     const room = rooms[code];
     if (!room || room.phase !== "playing") return;
@@ -342,7 +342,7 @@ io.on("connection", (socket) => {
     const roundIdx = room.roundIndex || 0;
     const currentQuestion = room.questions?.[room.currentQuestionIndex];
     
-    // Calculate vote counts
+    
     const voteCounts = Array(currentQuestion.statements.length).fill(0);
     room.players.forEach(p => {
       const answer = p.answers?.[roundIdx];
@@ -356,7 +356,7 @@ io.on("connection", (socket) => {
     io.to(code).emit("round-complete", roomWithVotes);
   });
 
-  // Host advances to next player's grid (next round)
+  
   socket.on("next-player-grid", async ({ code, selectedGridId, selectedGridOwner }) => {
     console.log("=== NEXT PLAYER GRID REQUEST ===");
     console.log("Room code received:", code);
@@ -388,7 +388,7 @@ io.on("connection", (socket) => {
       console.log(`========================================`);
       
       if (nextIndex >= room.roundOrder.length) {
-        // All rounds complete -> finalize and finish
+        
         console.log("✅ All rounds complete, finishing game");
         room.phase = "finished";
         room.players.forEach(p => {
@@ -400,7 +400,7 @@ io.on("connection", (socket) => {
         return;
       }
 
-      // roundOrder now contains firebaseIds, not socket IDs
+      
       const nextOwnerFirebaseId = room.roundOrder[nextIndex];
       const nextOwner = room.players.find(p => p.firebaseId === nextOwnerFirebaseId);
       if (!nextOwner) {
@@ -411,7 +411,7 @@ io.on("connection", (socket) => {
 
       console.log("Next player:", nextOwner.name, "Firebase ID:", nextOwner.firebaseId);
 
-      // Use the next player's selected grid
+      
       selectedGridId = nextOwner.selectedGridId;
       selectedGridOwner = nextOwner.firebaseId;
 
@@ -432,7 +432,7 @@ io.on("connection", (socket) => {
 
       console.log("User found with", ownerUserDoc.grids?.length || 0, "grids");
 
-      // Use the selectedGridId from the room (set during game start)
+      
       let gridId = selectedGridId;
       if (!gridId) {
         console.log("❌ No grid ID found in room state!");
@@ -451,12 +451,12 @@ io.on("connection", (socket) => {
 
       console.log("Selected grid:", selectedGrid.title, "True index:", selectedGrid.trueStatementIndex);
 
-      // Advance to next round and set the question
+      
       room.roundIndex = nextIndex;
       room.selectedGridId = gridId;
       room.selectedGridOwner = selectedGridOwner;
       room.selectedGridTitle = selectedGrid.title;
-      room.currentPlayerName = nextOwner.name; // Store whose grid this is
+      room.currentPlayerName = nextOwner.name; 
       room.questions = [{
         text: `Which statement is TRUE about ${nextOwner.name}?`,
         statements: selectedGrid.statements,
@@ -484,13 +484,13 @@ io.on("connection", (socket) => {
       room.players = room.players.filter(p => p.id !== socket.id);
       console.log(`   Players remaining: ${room.players.length}`);
       
-      // NEVER delete rooms that are in "playing" or "finished" phase
-      // Players will rejoin when they navigate to the game page
+      
+      
       if (room.players.length === 0) {
         if (room.phase === "playing" || room.phase === "finished") {
           console.log(`⚠️ Room ${roomCode} is empty but game is ${room.phase}, KEEPING ROOM ALIVE indefinitely`);
           console.log(`   Room state preserved: phase=${room.phase}, roundOrder=[${room.roundOrder?.join(', ')}], roundIndex=${room.roundIndex}`);
-          // Don't delete the room - players will rejoin from the game page
+          
         } else {
           console.log(`🗑️ Room ${roomCode} is empty (lobby phase), deleting it`);
           delete rooms[roomCode];
@@ -504,7 +504,7 @@ io.on("connection", (socket) => {
   });
 });
 
-// Configure CORS for Express (same origins as Socket.IO)
+
 app.use(cors({
   origin: allowedOrigins,
   credentials: true
@@ -555,7 +555,7 @@ app.post('/api/save-grid', verifyAuth, async (req, res) => {
     const { title, statements, truthIndex } = req.body;
     console.log('Save grid request:', { title, statements, truthIndex, userId: req.user.uid });
     
-    // Check if truthIndex is a valid number (0-4)
+    
     const truthIndexNum = Number(truthIndex);
     if (!title || statements?.length !== 5 || isNaN(truthIndexNum) || truthIndexNum < 0 || truthIndexNum > 4) {
       console.log('Validation failed:', { 
@@ -577,7 +577,7 @@ app.post('/api/save-grid', verifyAuth, async (req, res) => {
       });
     }
 
-    // Use $push with findOneAndUpdate to avoid subdocument validation issues
+    
     const gridToAdd = {
       title: title,
       statements: statements,
@@ -628,7 +628,7 @@ app.delete('/api/grids/:id', verifyAuth, async (req, res) => {
   }
 });
 
-// Health check endpoint
+
 app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'ok', 
@@ -639,11 +639,11 @@ app.get('/api/health', (req, res) => {
 
 mongoose
   .connect(process.env.MONGO_URI, {
-    // Faster connection: reduce timeout from default 30s to 10s
+    
     serverSelectionTimeoutMS: 10000,
-    // Keep connections alive
+    
     heartbeatFrequencyMS: 10000,
-    // Socket timeout
+    
     socketTimeoutMS: 45000,
   })
   .then(() => {
@@ -652,7 +652,7 @@ mongoose
       console.log(`🚀 Server ready on port ${PORT}`);
       console.log(`📡 Socket.IO server is running`);
 
-      // Self-ping every 10 minutes to prevent cold starts on Railway/Render
+      
       const SELF_URL = process.env.RAILWAY_PUBLIC_DOMAIN
         ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`
         : process.env.RENDER_EXTERNAL_URL
@@ -663,7 +663,7 @@ mongoose
         setInterval(() => {
           fetch(`${SELF_URL}/api/health`).catch(() => {});
           console.log('🏓 Keep-alive ping sent');
-        }, 10 * 60 * 1000); // every 10 minutes
+        }, 10 * 60 * 1000); 
       }
     });
   })

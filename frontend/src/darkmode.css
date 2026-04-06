@@ -1,20 +1,17 @@
-/* ============================================
-   BLUFF GRID - DARK MODE OVERRIDES
-   Shifts to a deeper, true-black palette
-   ============================================ */
 
-/* Base background shift */
+
+
 :root.dark-mode .app-container {
   background: #050508;
 }
 
-/* Header */
+
 :root.dark-mode header {
   background: rgba(5, 5, 8, 0.9);
   border-bottom-color: rgba(255,255,255,0.06);
 }
 
-/* ===== HOME PAGE ===== */
+
 :root.dark-mode .home-page {
   background: #050508;
 }
@@ -22,7 +19,7 @@
   opacity: 0.25;
 }
 
-/* ===== ABOUT PAGE ===== */
+
 :root.dark-mode .about-page {
   background: #050508;
 }
@@ -34,7 +31,7 @@
   border-color: rgba(255,255,255,0.06);
 }
 
-/* ===== PROFILE PAGE ===== */
+
 :root.dark-mode .profile-page {
   background: #050508;
 }
@@ -50,7 +47,7 @@
   border-color: rgba(255,255,255,0.05);
 }
 
-/* ===== CREATE GRID PAGE ===== */
+
 :root.dark-mode .create-grid-content {
   background: rgba(255,255,255,0.025);
   border-color: rgba(255,255,255,0.05);
@@ -65,7 +62,7 @@
   border-color: rgba(255,255,255,0.04);
 }
 
-/* ===== GAME PAGE ===== */
+
 :root.dark-mode .game-page {
   background: transparent;
 }
@@ -81,24 +78,24 @@
   border-color: rgba(255,255,255,0.06);
 }
 
-/* ===== LOBBY PAGE ===== */
+
 :root.dark-mode .lobby-container,
 :root.dark-mode .card {
   background: #050508;
 }
 
-/* ===== LEADERBOARD ===== */
+
 :root.dark-mode .leaderboard-container {
   background: #050508;
 }
 
-/* ===== FOOTER ===== */
+
 :root.dark-mode .app-footer {
   background: rgba(5,5,8,0.95);
   border-top-color: rgba(255,255,255,0.06);
 }
 
-/* ===== SOUND / DARK MODE TOGGLES ===== */
+
 :root.dark-mode .sound-toggle,
 :root.dark-mode .dark-mode-toggle {
   background: rgba(255,255,255,0.06);
@@ -110,12 +107,12 @@
   border-color: rgba(255,255,255,0.15);
 }
 
-/* Navigation links in dark mode */
+
 :root.dark-mode .nav-link {
   box-shadow: none;
 }
 
-/* General body override */
+
 :root.dark-mode body {
   background: #050508;
 }

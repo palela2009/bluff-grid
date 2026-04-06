@@ -1,15 +1,29 @@
 import React from "react"
 import "./About.css"
-import { Target, Gamepad2, Users, Lock, BarChart3, Palette, ClipboardList, UserPlus, Swords, Trophy, Code, Mail, Calendar } from "lucide-react"
+import {
+  Target,
+  Gamepad2,
+  Users,
+  Lock,
+  BarChart3,
+  Palette,
+  ClipboardList,
+  UserPlus,
+  Swords,
+  Trophy,
+  Code,
+  Mail,
+  Calendar
+} from "lucide-react"
 
 const About = () => {
   return (
     <div className="about-page">
-      {/* Ambient */}
+      {}
       <div className="about-glow about-glow-1" />
       <div className="about-glow about-glow-2" />
 
-      {/* Hero */}
+      {}
       <header className="about-hero">
         <div className="about-hero-icon">
           <Target size={36} />
@@ -37,7 +51,10 @@ const About = () => {
               <div className="play-step-body">
                 <div className="play-step-num">Step 1</div>
                 <h3>Create Your Grids</h3>
-                <p>Write 5 statements per grid — mark only 1 as true, the rest are bluffs. Be creative!</p>
+                <p>
+                  Write 5 statements per grid — mark only 1 as true, the rest
+                  are bluffs. Be creative!
+                </p>
               </div>
             </div>
 
@@ -48,7 +65,10 @@ const About = () => {
               <div className="play-step-body">
                 <div className="play-step-num">Step 2</div>
                 <h3>Join a Room</h3>
-                <p>Host a game or join friends with a unique room code. Up to 8 players per room.</p>
+                <p>
+                  Host a game or join friends with a unique room code. Up to 8
+                  players per room.
+                </p>
               </div>
             </div>
 
@@ -59,7 +79,10 @@ const About = () => {
               <div className="play-step-body">
                 <div className="play-step-num">Step 3</div>
                 <h3>Bluff & Guess</h3>
-                <p>Pick grids from opponents and try to find the one true statement among the lies.</p>
+                <p>
+                  Pick grids from opponents and try to find the one true
+                  statement among the lies.
+                </p>
               </div>
             </div>
 
@@ -70,7 +93,10 @@ const About = () => {
               <div className="play-step-body">
                 <div className="play-step-num">Step 4</div>
                 <h3>Win Points</h3>
-                <p>Earn points by finding truths and by successfully deceiving other players.</p>
+                <p>
+                  Earn points by finding truths and by successfully deceiving
+                  other players.
+                </p>
               </div>
             </div>
           </div>
@@ -131,13 +157,16 @@ const About = () => {
                 </span>
                 <span className="creator-tag">
                   <Mail size={14} />
-                  <a href="mailto:alexandre26062009@gmail.com">alexandre26062009@gmail.com</a>
+                  <a href="mailto:alexandre26062009@gmail.com">
+                    alexandre26062009@gmail.com
+                  </a>
                 </span>
               </div>
 
               <p className="creator-bio">
-                Passionate about creating engaging web experiences and multiplayer games.
-                Bluff Grid combines strategy, psychology, and real-time interaction into one app.
+                Passionate about creating engaging web experiences and
+                multiplayer games. Bluff Grid combines strategy, psychology, and
+                real-time interaction into one app.
               </p>
             </div>
           </div>

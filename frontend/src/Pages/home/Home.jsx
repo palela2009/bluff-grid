@@ -1,7 +1,16 @@
 import "./Home.css"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
-import { Play, Users, ClipboardList, Zap, ArrowRight, Sparkles, Target, Trophy } from "lucide-react"
+import {
+  Play,
+  Users,
+  ClipboardList,
+  Zap,
+  ArrowRight,
+  Sparkles,
+  Target,
+  Trophy
+} from "lucide-react"
 import soundManager from "../../lib/sounds"
 
 const generateRoomCode = () => {
@@ -35,12 +44,12 @@ export const Home = () => {
 
   return (
     <div className="home-page">
-      {/* Ambient background */}
+      {}
       <div className="home-glow home-glow-1" />
       <div className="home-glow home-glow-2" />
       <div className="home-glow home-glow-3" />
 
-      {/* Hero */}
+      {}
       <section className="home-hero">
         <div className="hero-badge">
           <Sparkles size={16} />
@@ -56,8 +65,8 @@ export const Home = () => {
         </h1>
 
         <p className="hero-desc">
-          Create grids of facts and lies, then challenge your friends to find what's real.
-          The best bluffer wins.
+          Create grids of facts and lies, then challenge your friends to find
+          what's real. The best bluffer wins.
         </p>
 
         <div className="hero-actions">
@@ -111,7 +120,10 @@ export const Home = () => {
             </div>
             <div className="step-num">01</div>
             <h3>Create Your Grids</h3>
-            <p>Write 5 statements — 4 lies and 1 truth. Make them believable to fool your friends.</p>
+            <p>
+              Write 5 statements — 4 lies and 1 truth. Make them believable to
+              fool your friends.
+            </p>
           </div>
 
           <div className="step-arrow">
@@ -124,7 +136,10 @@ export const Home = () => {
             </div>
             <div className="step-num">02</div>
             <h3>Invite Friends</h3>
-            <p>Share your room code and watch friends join. More players = more chaos!</p>
+            <p>
+              Share your room code and watch friends join. More players = more
+              chaos!
+            </p>
           </div>
 
           <div className="step-arrow">
@@ -137,7 +152,10 @@ export const Home = () => {
             </div>
             <div className="step-num">03</div>
             <h3>Play & Win</h3>
-            <p>Guess the truth in each grid. Fool others with your lies to score even more!</p>
+            <p>
+              Guess the truth in each grid. Fool others with your lies to score
+              even more!
+            </p>
           </div>
         </div>
       </section>
@@ -146,3 +164,4 @@ export const Home = () => {
 }
 
 export default Home
+
